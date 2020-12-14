@@ -4,6 +4,7 @@
         <strong>{{ currentUser.username }}</strong> Profile
       </h3>
     </header>
+    <div class="jumbotron" style="background-color: cadetblue;">
     <p>
       <strong>Token:</strong>
       {{ currentUser.accessToken.substring(0, 20) }} ...
@@ -13,15 +14,23 @@
       <strong>Email:</strong>
       {{ currentUser.email }}
     </p>
+    <p>
+      <strong>UserId:</strong>
+      {{ currentUser.id }}
+    </p>
     <strong>Roles:</strong>
     <ul>
       <li *ngFor="let role of currentUser.roles">
         {{ role }}
       </li>
     </ul>
+  </div>
+    <div class="jumbotron" style="background-color: cadetblue;">
+      <app-upload-files></app-upload-files>
+    </div>
 
-    <div class="text-center">
-      <button type="button" class="btn" style="background-color: indianred; color: white;" (click)="deleteAccount()">Delete Account</button>
+    <div class="jumbotron" style="background-color: cadetblue;">
+      <button type="button" class="btn" style="background-color: indianred; color: white;" (click)="deleteAccount(currentUser.id)">Delete Account</button>
     </div>
   </div>
   

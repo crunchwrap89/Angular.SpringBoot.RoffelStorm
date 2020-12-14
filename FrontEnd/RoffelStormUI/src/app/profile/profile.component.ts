@@ -20,8 +20,8 @@ export class ProfileComponent implements OnInit {
     this.currentUser = this.token.getUser();
   }
 
-  deleteAccount(){
-  this.http.delete('http://localhost:8080/id')
+  deleteAccount(id){
+  this.http.delete('http://localhost:8080/api/auth/deleteUser/' + id)
   .subscribe({
       next: data => {
           this.status = 'Delete successful';
