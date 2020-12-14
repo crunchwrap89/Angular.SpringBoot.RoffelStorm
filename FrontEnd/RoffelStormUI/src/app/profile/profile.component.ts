@@ -14,8 +14,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private token: TokenStorageService,
               private http: HttpClient) { }
-
-
+            
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
   }
@@ -25,6 +24,8 @@ export class ProfileComponent implements OnInit {
   .subscribe({
       next: data => {
           this.status = 'Delete successful';
+          this.token.signOut();
+          window.location.reload();
       },
       error: error => {
           this.errorMessage = error.message;
