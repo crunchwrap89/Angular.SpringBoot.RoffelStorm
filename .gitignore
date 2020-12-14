@@ -4,3 +4,4 @@
 **/.properties
 **/application.properties
 **\application.properties
+*.properties
