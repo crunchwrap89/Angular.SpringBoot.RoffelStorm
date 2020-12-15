@@ -1,1 +1,11 @@
-<p>board-user works!</p>
+<div class="container">
+    <header class="jumbotron">
+      <h1>Feed</h1>
+    </header>
+    <div class="jumbotron" *ngFor="let post of allPosts">
+      <p><b>Creator ID:</b> {{post.userId}} </p>
+      <p><b>Content:</b> {{post.text}} </p> 
+      <button type="button" class="btn" style="background-color: indianred; color: white;" (click)="downVote()">down vote</button>
+      <button type="button" class="btn" style="background-color: rgb(92, 205, 101); color: white;" (click)="upVote()">up vote</button>
+    </div>
+  </div>

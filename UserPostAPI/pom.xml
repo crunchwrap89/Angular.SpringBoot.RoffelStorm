@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.teamroffel.userpost</groupId>
-	<artifactId>roffelstorm</artifactId>
+	<artifactId>UserPostAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>roffelstorm</name>
+	<name>UserPostAPI</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
