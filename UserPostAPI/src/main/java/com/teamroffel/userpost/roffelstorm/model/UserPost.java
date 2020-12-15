@@ -1,5 +1,8 @@
 package com.teamroffel.userpost.roffelstorm.model;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -17,11 +20,20 @@ public class UserPost {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
+    private LocalDateTime localDateTime;
+    
     @Column(name= "user_ID")
     private int userId;
     
+    @Column(name= "user_name")
+    private String username;
+    
     @Column(name= "post_content")
     private String text;
+    
+    @Column
+    private int upvotes;
 
     public UserPost() {
     }
@@ -33,8 +45,20 @@ public class UserPost {
         this.userId = userId;
         
     }
+    
+    
 
-    public Long getId() {
+	public UserPost(Long id, LocalDateTime localDateTime, int userId, String username, String text, int upvotes) {
+		super();
+		this.id = id;
+		this.localDateTime = localDateTime;
+		this.userId = userId;
+		this.username = username;
+		this.text = text;
+		this.upvotes = upvotes;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -84,13 +108,4 @@ public class UserPost {
         return Objects.equals(this.id, other.id);
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("City{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(text).append('\'');
-        sb.append(", population=").append(userId);
-        sb.append('}');
-        return sb.toString();
-    }
 }
