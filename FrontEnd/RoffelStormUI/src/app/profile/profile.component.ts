@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { HttpClient } from '@angular/common/http';
+import { UserPost } from '../models/userpost'
+import { CompileMetadataResolver, CompileTemplateMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +13,7 @@ export class ProfileComponent implements OnInit {
   currentUser: any;
   status: any;
   errorMessage: any;
+  userPost = new UserPost();
 
   constructor(private token: TokenStorageService,
               private http: HttpClient) { }
@@ -33,4 +36,23 @@ export class ProfileComponent implements OnInit {
       }
   });
 }
+
+  createPost(id, post){
+    this.userPost.userId = id;
+    this.userPost.text = post;
+    console.log(this.userPost)
+    this.http.post('http://localhost:8082/api/create/', this.userPost)
+    .subscribe(
+      (val) => {
+        console.log("Post erghjdsrgjhk",
+        val);
+      },
+      response => {
+        console.log("POST call in error", response);
+      },
+      () => {
+        console.log("The post observable is now conpleted");
+      }
+    )
+  };
 }
