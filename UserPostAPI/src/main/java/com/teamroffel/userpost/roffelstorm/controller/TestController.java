@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +50,7 @@ public class TestController {
 //		return (List<UserFeedPost>) UFR.findAll();
 //	}
 	
-	
+//	Hämtar mottagarnamn beroende på vad man skickar in
 	@GetMapping("/userfeedpostbyrecievername/{recievername}")
 	public List<UserFeedPost> findByRecievername(@PathVariable String recievername) {
 		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.recieverName = :recievername");
@@ -58,6 +59,24 @@ public class TestController {
 		return userfeedposts;
 		}
 	
+	@GetMapping("/userfeedpostbyrecieverid/{recieverid}")
+	public List<UserFeedPost> findByRecieverid(@PathVariable int recieverid) {
+		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.recieverId = :recieverid");
+		q.setParameter("recieverid", recieverid);
+		List<UserFeedPost> userfeedposts = q.getResultList();
+		return userfeedposts;
+		}
+	
+	@GetMapping("/userfeedpostbyauthorid/{authorid}")
+	public List<UserFeedPost> findByAuthoid(@PathVariable int authorid) {
+		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.authorId = :authorid");
+		q.setParameter("authorid", authorid);
+		List<UserFeedPost> userfeedposts = q.getResultList();
+		return userfeedposts;
+		}
+	
+	
+//	Hämtar författarnamn beroende på vad man skickar in
 	@GetMapping("/userfeedpostbyauthorname/{authorname}")
 	public List<UserFeedPost> findByAuthorname(@PathVariable String authorname) {
 		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.authorName = :authorname");
@@ -93,6 +112,17 @@ public class TestController {
 	        return ResponseEntity.ok().body(userfeedpost);
 		
 	}
+	
+	@DeleteMapping("/deleteuserfeedpostbyid/{id}")
+	public void deleteUserFeedPostById(@PathVariable(value = "id") Long userId) throws Exception {
+		UFR.deleteById(userId);				
+	}
+	
+	@DeleteMapping("/deleteuserpostbyid/{id}")
+	public void deleteUserPostById(@PathVariable(value = "id") Long userId) throws Exception {
+		postRepository.deleteById(userId);				
+	}
+	
 	
 //	@GetMapping("/userfeedpostsbyname/{authorId}")
 //	public ResponseEntity<UserFeedPost> findUserFeedPostById(@PathVariable(value = "authorId") int authorId) throws Exception {
