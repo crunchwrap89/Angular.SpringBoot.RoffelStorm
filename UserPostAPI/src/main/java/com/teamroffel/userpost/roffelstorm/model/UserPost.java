@@ -66,7 +66,7 @@ public class UserPost {
 		this.userId = userId;
 		this.username = username;
 		this.text = text;
-		this.upvotes = upvotes;
+		this.upvotes = 0;
 	}
 
 	public Long getId() {

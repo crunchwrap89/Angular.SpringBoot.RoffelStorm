@@ -39,6 +39,8 @@ public class UserFeedPost {
 	@Column
 	private String recieverName;
 	
+	@Column
+    private int upvotes;
 
 	public UserFeedPost() {
 	}
@@ -51,6 +53,7 @@ public class UserFeedPost {
 		this.recieverId = recieverId;
 		this.recieverName = authorName;
 		this.recieverName = recieverName;
+		this.upvotes  = 0;
 	}
 
 	public Long getId() {
@@ -100,6 +103,14 @@ public class UserFeedPost {
 	public void setRecieverName(String recieverName) {
 		this.recieverName = recieverName;
 	}
+	
+	public int getUpvotes() {
+		return upvotes;
+	}
+
+	public void setUpvotes(int upvotes) {
+		this.upvotes = upvotes;
+	}
 
 
 	@Override
@@ -113,6 +124,7 @@ public class UserFeedPost {
 		result = prime * result + recieverId;
 		result = prime * result + ((recieverName == null) ? 0 : recieverName.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
+		result = prime * result + upvotes;
 		return result;
 	}
 
@@ -155,8 +167,13 @@ public class UserFeedPost {
 				return false;
 		} else if (!text.equals(other.text))
 			return false;
+		if (upvotes != other.upvotes)
+			return false;
 		return true;
 	}
+
+
+	
 
 	
 
