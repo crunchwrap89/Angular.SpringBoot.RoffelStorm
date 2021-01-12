@@ -3,14 +3,18 @@ package com.teamroffel.userpost.roffelstorm.model;
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.Objects;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "userposts")
@@ -21,7 +25,8 @@ public class UserPost {
     private Long id;
     
     @Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
-    private LocalDateTime localDateTime;
+    @CreationTimestamp  
+    private Date date;
     
     @Column(name= "user_ID")
     private int userId;
@@ -35,6 +40,7 @@ public class UserPost {
     @Column
     private int upvotes;
 
+    
     public UserPost() {
     }
 
@@ -46,18 +52,22 @@ public class UserPost {
 //        
 //    }
     
+//	public UserPost(Long id, LocalDateTime localDateTime, int userId, String username, String text, int upvotes) {
+//		this.id = id;
+//		this.localDateTime = localDateTime;
+//		this.userId = userId;
+//		this.username = username;
+//		this.text = text;
+//		this.upvotes = upvotes;
+//	}
     
-
-	public UserPost(Long id, LocalDateTime localDateTime, int userId, String username, String text, int upvotes) {
+	public UserPost(Long id, int userId, String username, String text, int upvotes) {
 		this.id = id;
-		this.localDateTime = localDateTime;
 		this.userId = userId;
 		this.username = username;
 		this.text = text;
 		this.upvotes = upvotes;
 	}
-
-	
 
 	public Long getId() {
 		return id;
@@ -67,12 +77,12 @@ public class UserPost {
 		this.id = id;
 	}
 
-	public LocalDateTime getLocalDateTime() {
-		return localDateTime;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setLocalDateTime(LocalDateTime localDateTime) {
-		this.localDateTime = localDateTime;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public int getUserId() {
@@ -111,8 +121,8 @@ public class UserPost {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((localDateTime == null) ? 0 : localDateTime.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		result = prime * result + upvotes;
 		result = prime * result + userId;
@@ -129,15 +139,15 @@ public class UserPost {
 		if (getClass() != obj.getClass())
 			return false;
 		UserPost other = (UserPost) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (localDateTime == null) {
-			if (other.localDateTime != null)
-				return false;
-		} else if (!localDateTime.equals(other.localDateTime))
 			return false;
 		if (text == null) {
 			if (other.text != null)
@@ -155,6 +165,10 @@ public class UserPost {
 			return false;
 		return true;
 	}
+	
+
+
+
 
 
 }

@@ -44,12 +44,6 @@ public class TestController {
         return postRepository.save(userpost);
 	}
 	
-	@PostMapping("/createWithDate")
-	public UserPost createDatePost( @RequestBody UserPost userpost) {
-        return postRepository.save(userpost);
-	}
-	
-	
 	@GetMapping("/userpostbyid/{id}")
 	public ResponseEntity<UserPost> findPostById(@PathVariable(value = "id") Long userId) throws Exception {
 		UserPost userpost = postRepository.findById(userId)
