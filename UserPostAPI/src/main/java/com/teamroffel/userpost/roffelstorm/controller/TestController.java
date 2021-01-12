@@ -1,6 +1,11 @@
 package com.teamroffel.userpost.roffelstorm.controller;
 
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,11 +35,36 @@ public class TestController {
 	@Autowired
 	UserFeedPostRepository UFR;
 	
+	@PersistenceContext
+	private EntityManager em;
+	
 	@GetMapping("/all")
 	public List<UserPost> allAccess() {
 	
 		return (List<UserPost>) postRepository.findAll();
 	}
+//	@GetMapping("/allUserFeed")
+//	public List<UserFeedPost> allUserFeedAccess() {
+//	
+//		return (List<UserFeedPost>) UFR.findAll();
+//	}
+	
+	
+	@GetMapping("/userfeedpostbyrecievername/{recievername}")
+	public List<UserFeedPost> findByRecievername(@PathVariable String recievername) {
+		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.recieverName = :recievername");
+		q.setParameter("recievername", recievername);
+		List<UserFeedPost> userfeedposts = q.getResultList();
+		return userfeedposts;
+		}
+	
+	@GetMapping("/userfeedpostbyauthorname/{authorname}")
+	public List<UserFeedPost> findByAuthorname(@PathVariable String authorname) {
+		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.authorName = :authorname");
+		q.setParameter("authorname", authorname);
+		List<UserFeedPost> userfeedposts = q.getResultList();
+		return userfeedposts;
+		}
 	
 	/*	Man kan skicka in parametrarna "text" och "userId" i json för att skapa en post
 	 * 
