@@ -39,21 +39,18 @@ public class TestController {
 	@PersistenceContext
 	private EntityManager em;
 	
-	@GetMapping("/all")
-	public List<UserPost> allAccess() {
 	
-		return (List<UserPost>) postRepository.findAll();
+	@GetMapping("/all")
+	public List<UserPost> getAllUserposts() {
+		Query q = em.createQuery("select userpost from UserPost userpost ORDER BY date DESC");
+		List<UserPost> userposts = q.getResultList();
+		return userposts;
 	}
-//	@GetMapping("/allUserFeed")
-//	public List<UserFeedPost> allUserFeedAccess() {
-//	
-//		return (List<UserFeedPost>) UFR.findAll();
-//	}
 	
 //	Hämtar mottagarnamn beroende på vad man skickar in
 	@GetMapping("/userfeedpostbyrecievername/{recievername}")
 	public List<UserFeedPost> findByRecievername(@PathVariable String recievername) {
-		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.recieverName = :recievername");
+		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.recieverName = :recievername ORDER BY userfeedpost.date DESC");
 		q.setParameter("recievername", recievername);
 		List<UserFeedPost> userfeedposts = q.getResultList();
 		return userfeedposts;
@@ -61,7 +58,7 @@ public class TestController {
 	
 	@GetMapping("/userfeedpostbyrecieverid/{recieverid}")
 	public List<UserFeedPost> findByRecieverid(@PathVariable int recieverid) {
-		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.recieverId = :recieverid");
+		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.recieverId = :recieverid ORDER BY userfeedpost.date DESC");
 		q.setParameter("recieverid", recieverid);
 		List<UserFeedPost> userfeedposts = q.getResultList();
 		return userfeedposts;
@@ -69,7 +66,7 @@ public class TestController {
 	
 	@GetMapping("/userfeedpostbyauthorid/{authorid}")
 	public List<UserFeedPost> findByAuthoid(@PathVariable int authorid) {
-		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.authorId = :authorid");
+		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.authorId = :authorid ORDER BY userfeedpost.date DESC");
 		q.setParameter("authorid", authorid);
 		List<UserFeedPost> userfeedposts = q.getResultList();
 		return userfeedposts;
@@ -79,7 +76,7 @@ public class TestController {
 //	Hämtar författarnamn beroende på vad man skickar in
 	@GetMapping("/userfeedpostbyauthorname/{authorname}")
 	public List<UserFeedPost> findByAuthorname(@PathVariable String authorname) {
-		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.authorName = :authorname");
+		Query q = em.createQuery("select userfeedpost from UserFeedPost userfeedpost where userfeedpost.authorName = :authorname ORDER BY userfeedpost.date DESC");
 		q.setParameter("authorname", authorname);
 		List<UserFeedPost> userfeedposts = q.getResultList();
 		return userfeedposts;
@@ -103,6 +100,7 @@ public class TestController {
 	@PostMapping("/createuserfeedpost")
 	public UserFeedPost createuserfeedpost( @RequestBody UserFeedPost userfeedpost) {
 		return UFR.save(userfeedpost);
+		
 	}
 	
 	@GetMapping("/userfeedpostbyid/{id}")
@@ -123,13 +121,5 @@ public class TestController {
 		postRepository.deleteById(userId);				
 	}
 	
-	
-//	@GetMapping("/userfeedpostsbyname/{authorId}")
-//	public ResponseEntity<UserFeedPost> findUserFeedPostById(@PathVariable(value = "authorId") int authorId) throws Exception {
-//		UserFeedPost userfeedpost = UFR.findAllById(authorId)
-//	               .orElseThrow(() -> new Exception("id " + userId + " not found"));
-//	        return ResponseEntity.ok().body(userfeedpost);
-//		
-//	}
 
 }

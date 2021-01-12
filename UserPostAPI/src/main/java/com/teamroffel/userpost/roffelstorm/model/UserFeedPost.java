@@ -112,6 +112,13 @@ public class UserFeedPost {
 		this.upvotes = upvotes;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	@Override
 	public int hashCode() {
