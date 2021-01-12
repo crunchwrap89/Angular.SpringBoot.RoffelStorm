@@ -3,8 +3,12 @@
       <h1>Feed</h1>
     </header>
     <div class="jumbotron" *ngFor="let post of allPosts">
+      <p><b>PostID:</b> {{post.id}} </p>
       <p><b>Creator ID:</b> {{post.userId}} </p>
-      <p><b>Content:</b> {{post.text}} </p> 
+      <p><b>Username:</b> {{post.username}} </p>
+      <p><b>Content:</b> {{post.text}} </p>
+      <p><b>Upvotes:</b> {{post.upvotes}} </p> 
+      <p><b>LDT:</b> {{post.localDateTime}} </p> 
       <button type="button" class="btn" style="background-color: indianred; color: white;" (click)="downVote()">down vote</button>
       <button type="button" class="btn" style="background-color: rgb(92, 205, 101); color: white;" (click)="upVote()">up vote</button>
     </div>
