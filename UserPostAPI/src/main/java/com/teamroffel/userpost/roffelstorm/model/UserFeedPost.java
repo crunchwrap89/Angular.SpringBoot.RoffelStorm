@@ -1,12 +1,16 @@
 package com.teamroffel.userpost.roffelstorm.model;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "userfeedposts")
@@ -18,6 +22,10 @@ public class UserFeedPost {
 	
 	@Column
 	private int authorId;
+	
+	@Column(name = "date_posted", columnDefinition = "TIMESTAMP")
+    @CreationTimestamp  
+    private Date date;
 
 	@Column(name = "post_content")
 	private String text;
@@ -100,6 +108,7 @@ public class UserFeedPost {
 		int result = 1;
 		result = prime * result + authorId;
 		result = prime * result + ((authorName == null) ? 0 : authorName.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + recieverId;
 		result = prime * result + ((recieverName == null) ? 0 : recieverName.hashCode());
@@ -124,6 +133,11 @@ public class UserFeedPost {
 				return false;
 		} else if (!authorName.equals(other.authorName))
 			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -144,10 +158,7 @@ public class UserFeedPost {
 		return true;
 	}
 
-
 	
-
-
 
 
 }

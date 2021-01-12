@@ -24,14 +24,14 @@ public class UserPost {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
+    @Column(name = "date_posted", columnDefinition = "TIMESTAMP")
     @CreationTimestamp  
     private Date date;
     
-    @Column(name= "user_ID")
+    @Column
     private int userId;
     
-    @Column(name= "user_name")
+    @Column
     private String username;
     
     @Column(name= "post_content")
