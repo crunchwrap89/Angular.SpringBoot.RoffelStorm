@@ -12,7 +12,10 @@
         <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
       </li>
       <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">Feed</a>
+        <a href="/feed" class="nav-link" *ngIf="isLoggedIn" routerLink="feed">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a href="/users" class="nav-link" *ngIf="isLoggedIn" routerLink="users">Users</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">

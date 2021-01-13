@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { UserPost } from '../models/userpost'
-import { CompileMetadataResolver, CompileTemplateMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-profile',

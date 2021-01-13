@@ -16,9 +16,20 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { UploadFilesComponent } from './components/upload-files/upload-files.component';
+// import { FindRoffelsComponent } from './heroes/find-roffels/find-roffels.component';
+// import { UserDetailComponent } from './heroes/user-detail/user-detail.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HeroesModule } from './heroes/heroes.module';
 
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    HeroesModule,
+    AppRoutingModule,
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -28,13 +39,10 @@ import { UploadFilesComponent } from './components/upload-files/upload-files.com
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    UploadFilesComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
+    UploadFilesComponent,
+    // FindRoffelsComponent,
+    // UserDetailComponent,
+    PageNotFoundComponent
   ],
    providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
