@@ -1,13 +1,13 @@
 package com.teamroffel.userpost.roffelstorm.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -123,5 +123,34 @@ public class TestController {
 		postRepository.deleteById(userId);				
 	}
 	
+	@PutMapping("/updateuserfeedupvotes/{id}")
+	public Optional<UserFeedPost> updateUserFeedUpvotes(@RequestBody UserFeedPost newUserFeedPost, @PathVariable Long id) {
+		return UFR.findById(id)
+			    .map(userfeed -> {
+			      userfeed.setUpvotes(newUserFeedPost.getUpvotes());
+			      return UFR.save(userfeed);
+			    });	
+	}
+	
+	@PutMapping("/updateuserpostupvotes/{id}")
+	public Optional<UserPost> updateUserPostUpvotes(@RequestBody UserPost newUserPost, @PathVariable Long id) {
+		return postRepository.findById(id)
+			    .map(userpost -> {
+			      userpost.setUpvotes(newUserPost.getUpvotes());
+			      return postRepository.save(userpost);
+			    });	
+	}
+//	 Updaterar oavsett om du fyler i det eller inte. Om du inte fyller  ett fällt kommer det ändra till null oavsett omd et var något där innan.
+	@PutMapping("/updateuserpost/{id}")
+	public Optional<UserPost> updateUserFeedPost(@RequestBody UserPost newUserPost, @PathVariable Long id) {
+		return postRepository.findById(id)
+			    .map(userpost -> {
+			      userpost.setText(newUserPost.getText());
+			      userpost.setUpvotes(newUserPost.getUpvotes());
+			      userpost.setUserId(newUserPost.getUserId());
+			      userpost.setUsername(newUserPost.getUsername());
+			      return postRepository.save(userpost);
+			    });	
+	}
 
 }
