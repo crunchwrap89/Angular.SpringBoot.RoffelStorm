@@ -44,23 +44,6 @@ public class UserPost {
     public UserPost() {
     }
 
-//    public UserPost(Long id,  String text, int userId) {
-//
-//        this.id = id;
-//        this.text = text;
-//        this.userId = userId;
-//        
-//    }
-    
-//	public UserPost(Long id, LocalDateTime localDateTime, int userId, String username, String text, int upvotes) {
-//		this.id = id;
-//		this.localDateTime = localDateTime;
-//		this.userId = userId;
-//		this.username = username;
-//		this.text = text;
-//		this.upvotes = upvotes;
-//	}
-    
 	public UserPost(Long id, int userId, String username, String text, int upvotes) {
 		this.id = id;
 		this.userId = userId;
