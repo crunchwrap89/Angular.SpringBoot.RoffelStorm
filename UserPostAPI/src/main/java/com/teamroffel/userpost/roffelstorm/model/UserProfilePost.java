@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "userfeedposts")
-public class UserFeedPost {
+@Table(name = "userprofileposts")
+public class UserProfilePost {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,11 +42,11 @@ public class UserFeedPost {
 	@Column
     private int upvotes;
 
-	public UserFeedPost() {
+	public UserProfilePost() {
 	}
 
 
-	public UserFeedPost(Long id, String text, int authorId, int recieverId, String authorName, String recieverName) {
+	public UserProfilePost(Long id, String text, int authorId, int recieverId, String authorName, String recieverName) {
 		this.id = id;
 		this.text = text;
 		this.authorId = authorId;
@@ -144,7 +144,7 @@ public class UserFeedPost {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserFeedPost other = (UserFeedPost) obj;
+		UserProfilePost other = (UserProfilePost) obj;
 		if (authorId != other.authorId)
 			return false;
 		if (authorName == null) {
