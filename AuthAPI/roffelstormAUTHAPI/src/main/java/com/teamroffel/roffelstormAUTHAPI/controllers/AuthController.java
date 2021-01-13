@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.validation.Valid;
 
 import com.teamroffel.roffelstormAUTHAPI.models.ERole;
@@ -45,6 +48,9 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+    
+    @PersistenceContext
+	private EntityManager em;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -122,6 +128,13 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
+    @GetMapping("/all")
+    public List<User> getAllUsers() {
+    	Query q = em.createQuery("select username, id from User user");
+    	List<User> userlist = q.getResultList();
+    	return userlist;   	
+    }
+    
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
         userRepository.deleteById(id);
