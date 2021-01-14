@@ -130,7 +130,7 @@ public class AuthController {
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
-    	Query q = em.createQuery("select username, id from User user");
+    	Query q = em.createQuery("select user from User user");
     	List<User> userlist = q.getResultList();
     	return userlist;   	
     }

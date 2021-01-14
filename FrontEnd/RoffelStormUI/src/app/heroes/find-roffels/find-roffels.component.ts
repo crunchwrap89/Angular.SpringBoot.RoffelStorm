@@ -12,7 +12,6 @@ import { MessageService } from '../../message.service';
 export class FindRoffelsComponent implements OnInit {
 
   selectedUser: User;
-
   users: User[];
 
   constructor(private userService: UserService, private messageService: MessageService) { }

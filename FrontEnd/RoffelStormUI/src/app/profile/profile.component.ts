@@ -39,15 +39,14 @@ export class ProfileComponent implements OnInit {
   createPost(id, post){
     this.userPost.userId = id;
     this.userPost.text = post;
-    console.log(this.userPost)
     this.http.post('http://localhost:8082/api/create/', this.userPost)
     .subscribe(
       (val) => {
-        console.log("Post erghjdsrgjhk",
+        console.log("Post made",
         val);
       },
       response => {
-        console.log("POST call in error", response);
+        console.log("POST call made error", response);
       },
       () => {
         console.log("The post observable is now conpleted");

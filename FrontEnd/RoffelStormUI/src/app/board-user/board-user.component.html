@@ -2,14 +2,19 @@
     <header class="jumbotron">
       <h1>Feed</h1>
     </header>
+    <div class="jumbotron" style="background-color: cadetblue;">
+      <h2>Whats on your mind?</h2>
+      <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput></textarea>
+      <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(currentUser, postcontent)">Post</button>
+    </div>
     <div class="jumbotron" *ngFor="let post of allPosts">
-      <p><b>PostID:</b> {{post.id}} </p>
-      <p><b>Creator ID:</b> {{post.userId}} </p>
-      <p><b>Username:</b> {{post.username}} </p>
-      <p><b>Content:</b> {{post.text}} </p>
-      <p><b>Upvotes:</b> {{post.upvotes}} </p> 
-      <p><b>LDT:</b> {{post.localDateTime}} </p> 
-      <button type="button" class="btn" style="background-color: indianred; color: white;" (click)="downVote()">down vote</button>
-      <button type="button" class="btn" style="background-color: rgb(92, 205, 101); color: white;" (click)="upVote()">up vote</button>
+      <div class="flexcontainer">
+          <div class="flexbox1" style="background-color: aquamarine;"> <p><b>Author:</b> {{post.username}}</p>   </div>
+          <div class="flexbox2"> <p><b>Posted at:</b> {{ post.date | date:'medium' }}</p>   </div>
+          <div class="flexbox3"> <p><b>Upvotes:</b> {{post.upvotes}}</p>   </div>  
+          <div class="flexbox4"> <p>{{post.text}}</p>   </div>
+      </div>
+      <button type="button" class="btn btn1"  (click)="upVote()">up vote</button>
+      <button type="button" class="btn btn2"  (click)="downVote()">down vote</button>
     </div>
   </div>
