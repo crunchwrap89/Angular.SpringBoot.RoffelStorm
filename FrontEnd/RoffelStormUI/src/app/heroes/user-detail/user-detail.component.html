@@ -3,18 +3,16 @@
 
 <div *ngIf="user" class="jumbotron">
   <div><span>id: </span>{{user.id}}</div>
-  <div><span>name: </span>{{user.name}}</div>
+  <div><span>name: </span>{{user.username}}</div>
 </div>
 
 <br><br>
 
-<div class="jumbotron" style="background-color: cadetblue;">
+<!-- <div class="jumbotron" style="background-color: cadetblue;">
   <textarea type="text" [(ngModel)]="post" id="form7" class="md-textarea form-control" mdbInput></textarea>
   <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(currentUser.id, post)">Post</button>
-</div>
+</div> -->
 
-<br><br>
-
-<div class="jumbotron">asdasdsad <br>
+<div class="jumbotron">
   <button (click)="goBack()">go back</button>
 </div>
