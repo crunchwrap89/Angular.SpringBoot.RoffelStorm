@@ -135,6 +135,14 @@ public class AuthController {
     	return userlist;   	
     }
     
+    @GetMapping("/user/{id}")
+    public List<User> getSpecificUser(@PathVariable("id") long id) {
+    	Query q = em.createQuery("select user from User user where user.id = :id");
+    	q.setParameter("id", id);
+    	List<User> user = q.getResultList();
+    	return user;   	
+    }
+    
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
         userRepository.deleteById(id);
