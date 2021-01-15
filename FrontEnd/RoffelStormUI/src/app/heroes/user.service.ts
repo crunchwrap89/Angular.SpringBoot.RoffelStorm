@@ -13,9 +13,8 @@ import { MessageService } from '../message.service';
 })
 export class UserService {
 
-  //private usersUrl = 'api/user';  // URL to web api
   private AUTH_API_URL = 'http://localhost:8080/api/auth';
-  private USERPOST_API_URL = 'http://localhost:8082/api/userpostbyid';
+  private USERPOST_API_URL = 'http://localhost:8082/api/userprofilepostbyrecieverid';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,13 +23,6 @@ export class UserService {
   constructor(private http: HttpClient, 
               private messageService: MessageService) { }
 
-  // getUsers(): Observable<User[]> {
-  //               return this.http.get<User[]>(this.AUTH_API_URL + '/all')
-  //                 .pipe(
-  //                   tap(_ => this.log('fetched users')),
-  //                   catchError(this.handleError<User[]>('getUsers', []))
-  //     );
-  // }
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.AUTH_API_URL + '/all')
       .pipe(
@@ -38,11 +30,21 @@ export class UserService {
         catchError(this.handleError<User[]>('getUsers', []))
 );
 }
+getUser(id): Observable<User> {
+  const url = `${this.AUTH_API_URL}/user/${id}`;
+  return this.http.get<User>(url).pipe(
+    tap(_ => this.log(`fetched user id=${id}`)),
+    catchError(this.handleError<User>(`getUser id=${id}`))
+  );
+}
+getUserPosts(id): Observable<any> {
+  const url = `${this.USERPOST_API_URL}/${id}`;
+  return this.http.get<any>(url).pipe(
+    tap(_ => this.log(`fetched userposts for id=${id}`)),
+    catchError(this.handleError<User>(`getUserPosts id=${id}`))
+  );
+}
 
-
-  getUser(id: number): Observable<any> {
-    return this.http.get(this.USERPOST_API_URL + `/${id}`, { responseType: 'text' });
-  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

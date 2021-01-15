@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   status: any;
   errorMessage: any;
   userPost = new UserPost();
+  postcontent: string;
 
   constructor(private token: TokenStorageService,
               private http: HttpClient) { }
@@ -36,8 +37,9 @@ export class ProfileComponent implements OnInit {
   });
 }
 
-  createPost(id, post){
-    this.userPost.userId = id;
+  createPost(currentuser, post){
+    this.userPost.userId = currentuser.id;
+    this.userPost.username = currentuser.username;
     this.userPost.text = post;
     this.http.post('http://localhost:8082/api/create/', this.userPost)
     .subscribe(

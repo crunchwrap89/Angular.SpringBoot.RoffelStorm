@@ -9,8 +9,6 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 
-// import { FindRoffelsComponent } from './heroes/find-roffels/find-roffels.component';
-
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -19,7 +17,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'feed', component: BoardUserComponent },
-  // { path: 'users', component: FindRoffelsComponent },
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: '**', component: PageNotFoundComponent },

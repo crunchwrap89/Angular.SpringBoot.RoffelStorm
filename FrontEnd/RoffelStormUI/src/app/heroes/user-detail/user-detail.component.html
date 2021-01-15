@@ -8,10 +8,18 @@
 
 <br><br>
 
-<!-- <div class="jumbotron" style="background-color: cadetblue;">
-  <textarea type="text" [(ngModel)]="post" id="form7" class="md-textarea form-control" mdbInput></textarea>
-  <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(currentUser.id, post)">Post</button>
-</div> -->
+<div class="jumbotron" style="background-color: cadetblue;">
+  <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput></textarea>
+  <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(user.id, postcontent)">Post</button>
+</div>
+
+<div class="jumbotron" *ngFor="let post of posts">
+  <div class="flexcontainer">
+      <div class="flexbox1" style="background-color: aquamarine;"> <p><b>Author:</b> {{post.authorName}}</p>   </div>
+      <div class="flexbox2"> <p><b>Posted at:</b> {{ post.date | date:'medium' }}</p>   </div> 
+      <div class="flexbox4"> <p>{{post.text}}</p>   </div>
+  </div>
+</div>
 
 <div class="jumbotron">
   <button (click)="goBack()">go back</button>

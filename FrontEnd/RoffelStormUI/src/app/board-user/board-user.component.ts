@@ -42,6 +42,7 @@ export class BoardUserComponent implements OnInit {
       },
       () => {
         console.log("The post observable is now conpleted");
+        this.ngOnInit()
       }
     )
   };

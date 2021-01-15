@@ -1,3 +1,14 @@
+@-webkit-keyframes green-fade {   
+  0% {background-color: rgb(96, 143, 58);}
+  100% {background-color: none;}
+}
+
+@keyframes green-fade {
+  0% {background-color:rgb(96, 143, 58);}
+  100% {background-color: none;}
+}
+
+
 .flexbox1 {
     display: inline-block;
     font-size: small;
@@ -28,6 +39,8 @@
     text-align: right;
     margin-right: .8em;
     border-radius: 4px;
+    -webkit-animation: green-fade 1s ease-in 1;
+    animation: green-fade 1s ease-in 1;
   }
   .flexbox3 {
     display: inline-block;
