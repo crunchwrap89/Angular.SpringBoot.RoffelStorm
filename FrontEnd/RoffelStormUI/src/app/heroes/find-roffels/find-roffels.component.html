@@ -1,0 +1,12 @@
+<div class="jumbotron"><h2>Connect with other roffels</h2> 
+</div>
+  
+  <ul class="users">
+    <li *ngFor="let user of users">
+      <a routerLink="/user/{{user.id}}">
+        <span class="badge">{{user.id}}</span>{{user.username}} 
+      </a>
+    </li>
+  </ul>
+  
+  

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.validation.Valid;
 
 import com.teamroffel.roffelstormAUTHAPI.models.ERole;
@@ -25,11 +28,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -49,6 +48,9 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+    
+    @PersistenceContext
+	private EntityManager em;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -124,5 +126,26 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @GetMapping("/all")
+    public List<User> getAllUsers() {
+    	Query q = em.createQuery("select user from User user");
+    	List<User> userlist = q.getResultList();
+    	return userlist;   	
+    }
+    
+    @GetMapping("/user/{id}")
+    public List<User> getSpecificUser(@PathVariable("id") long id) {
+    	Query q = em.createQuery("select user from User user where user.id = :id");
+    	q.setParameter("id", id);
+    	List<User> user = q.getResultList();
+    	return user;   	
+    }
+    
+    @DeleteMapping("/deleteUser/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
+        userRepository.deleteById(id);
+        return ResponseEntity.ok(new MessageResponse("User removed"));
     }
 }

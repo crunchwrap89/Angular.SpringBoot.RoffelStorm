@@ -1,6 +1,6 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-danger">
-    <a href="#" class="navbar-brand">Roffelstorm 2.0</a>
+  <nav class="navbar navbar-expand navbar-dark sticky-top bg-info">
+    <a href="/home" class="navbar-brand">RoffelStorm 2.0</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
@@ -12,10 +12,12 @@
         <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
       </li>
       <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        <a href="/feed" class="nav-link" *ngIf="isLoggedIn" routerLink="feed">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a href="/users" class="nav-link" *ngIf="isLoggedIn" routerLink="users">Users</a>
       </li>
     </ul>
-
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
@@ -36,6 +38,7 @@
   </nav>
 
   <div class="container">
+  <!-- <div class="glitch"></div> -->
     <router-outlet></router-outlet>
   </div>
 </div>

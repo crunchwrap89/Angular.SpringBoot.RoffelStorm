@@ -4,6 +4,7 @@
         <strong>{{ currentUser.username }}</strong> Profile
       </h3>
     </header>
+    <div class="jumbotron" style="background-color: cadetblue;">
     <p>
       <strong>Token:</strong>
       {{ currentUser.accessToken.substring(0, 20) }} ...
@@ -13,12 +14,29 @@
       <strong>Email:</strong>
       {{ currentUser.email }}
     </p>
+    <p>
+      <strong>UserId:</strong>
+      {{ currentUser.id }}
+    </p>
     <strong>Roles:</strong>
     <ul>
       <li *ngFor="let role of currentUser.roles">
         {{ role }}
       </li>
     </ul>
+  </div>
+    <div class="jumbotron" style="background-color: cadetblue;">
+      <app-upload-files></app-upload-files>
+    </div>
+
+    <div class="jumbotron" style="background-color: cadetblue;">
+      <button type="button" class="btn" style="background-color: indianred; color: white;" (click)="deleteAccount(currentUser.id)">Delete Account</button>
+    </div>
+
+    <div class="jumbotron" style="background-color: cadetblue;">
+      <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput></textarea>
+      <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(currentUser, postcontent)">Post</button>
+    </div>
   </div>
   
   <ng-template #loggedOut>
