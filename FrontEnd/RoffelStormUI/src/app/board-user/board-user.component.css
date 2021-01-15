@@ -60,9 +60,9 @@
   }
   .flexbox4 {
     font-size: small;
-    color: white;
+    color: black;
     padding: 0.8em 0.7em 0 0.7em;
-    background-color: #497a81;
+    background-color: white;
     line-height: 1em;
     height: 15.5em;
     min-width: 16px;

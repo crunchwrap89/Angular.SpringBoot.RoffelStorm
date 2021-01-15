@@ -1,16 +1,13 @@
-<div class="jumbotron"><h2>User details</h2> 
+<div class="container">
+<div class="jumbotron">
+  <h3>
+    <strong>{{ user.username }}</strong> Profile
+  </h3>
 </div>
 
-<div *ngIf="user" class="jumbotron">
-  <div><span>id: </span>{{user.id}}</div>
-  <div><span>name: </span>{{user.username}}</div>
-</div>
-
-<br><br>
-
-<div class="jumbotron" style="background-color: cadetblue;">
-  <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput></textarea>
-  <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(user.id, postcontent)">Post</button>
+<div class="jumbotron" style="width: 50%;">
+  <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput placeholder="Write something on {{ user.username }}'s wall"></textarea>
+  <button type="button" class="btn" style="color: white;" (click)="createPost(user.id, postcontent)">Post</button>
 </div>
 
 <div class="jumbotron" *ngFor="let post of posts">
@@ -22,5 +19,8 @@
 </div>
 
 <div class="jumbotron">
-  <button (click)="goBack()">go back</button>
+  <button class="btn" style="color: white;" (click)="goBack()">go back</button>
+</div>
+
+<br><br>
 </div>
