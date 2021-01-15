@@ -7,7 +7,27 @@
     0% {background-color:rgb(96, 143, 58);}
     100% {background-color: none;}
   }
-  
+  textarea:focus::-webkit-input-placeholder
+{
+color: transparent;
+}
+textarea:focus::-moz-placeholder{
+color: transparent;
+}
+textarea:focus:-moz-placeholder{
+color: transparent;
+}
+input:focus::-webkit-input-placeholder
+{
+color: transparent;
+}
+input:focus::-moz-placeholder{
+color: transparent;
+}
+input:focus:-moz-placeholder{
+color: transparent;
+}
+
   
   .flexbox1 {
       display: inline-block;
@@ -59,13 +79,16 @@
       border-radius: 4px;
     }
     .flexbox4 {
-      font-size: small;
-      color: white;
+      color: black;
       padding: 0.8em 0.7em 0 0.7em;
-      background-color: #497a81;
+      background-color: whitesmoke;
       line-height: 1em;
       height: 15.5em;
       min-width: 16px;
       text-align: left;
       border-radius: 4px;
+    }
+
+    .btn {
+      background-color: #75d694;
     }
