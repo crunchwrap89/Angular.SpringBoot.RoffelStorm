@@ -22,4 +22,5 @@ public class UserPostService implements IUserPostService {
 
         return userPosts;
     }
+    
 }
