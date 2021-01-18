@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -38,7 +39,7 @@ public class FileController {
   @PersistenceContext
   private EntityManager em;
   @PostMapping("/upload")
-  public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+  public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("userId") int userId) {
     String message = "";
     try {
       String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -48,7 +49,7 @@ public class FileController {
       String stringPath = uuid + fileName;
       Files.write(path,bytes);
       message = stringPath;
-      storageService.store(file, stringPath);
+      storageService.store(file, stringPath, userId);
       return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
     } catch (Exception e) {
       message = "Could not upload the file: " + file.getOriginalFilename() + "!";
@@ -64,9 +65,25 @@ public class FileController {
   public ResponseEntity<List<ResponseFile>> getListFiles() {
     List<ResponseFile> files = storageService.getAllFiles().map(dbFile -> new ResponseFile(
         dbFile.getName(),
-        dbFile.getPath())).collect(Collectors.toList());
+        dbFile.getPath(),
+        dbFile.getUserId())).collect(Collectors.toList());
 
     return ResponseEntity.status(HttpStatus.OK).body(files);
+  }
+
+  @GetMapping("/files/{userId}")
+  public ResponseEntity<List<ResponseFile>> getListFilesByUserId(@PathVariable(value = "userId") int userId) {
+    List<ResponseFile> files = storageService.getAllFiles().map(dbFile -> new ResponseFile(
+            dbFile.getName(),
+            dbFile.getPath(),
+            dbFile.getUserId())).collect(Collectors.toList());
+    List<ResponseFile> filesByUserId = new ArrayList<>();
+    for(ResponseFile file : files) {
+      if(file.getUserId() == userId) {
+        filesByUserId.add(file);
+      }
+    }
+    return ResponseEntity.status(HttpStatus.OK).body(filesByUserId);
   }
   /*@Transactional
 	@DeleteMapping("/removeimage/{id}")

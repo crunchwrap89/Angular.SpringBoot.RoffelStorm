@@ -5,9 +5,12 @@ package com.bezkoder.spring.files.upload.db.message;
 public class ResponseFile {
   private String name;
   private String path;
-  public ResponseFile(String name, String url) {
+  private int userId;
+
+  public ResponseFile(String name, String url, int userId) {
     this.name = name;
     this.path = url;
+    this.userId = userId;
   }
   public String getName() {
     return name;
@@ -21,4 +24,6 @@ public class ResponseFile {
   public void setPath(String url) {
     this.path = path;
   }
+  public int getUserId() { return userId; }
+  public void setUserId(int userId) { this.userId = userId; }
 }
