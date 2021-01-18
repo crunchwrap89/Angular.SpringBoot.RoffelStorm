@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teamroffel.userpost.roffelstorm.model.UserProfilePost;
 import com.teamroffel.userpost.roffelstorm.model.UserPost;
-import com.teamroffel.userpost.roffelstorm.repository.UsePostRepository;
+import com.teamroffel.userpost.roffelstorm.repository.UserPostRepository;
 import com.teamroffel.userpost.roffelstorm.repository.UserProfilePostRepository;
 
 @Controller
@@ -34,7 +34,7 @@ import com.teamroffel.userpost.roffelstorm.repository.UserProfilePostRepository;
 public class TestController {
 
 	@Autowired
-	UsePostRepository postRepository;
+	UserPostRepository postRepository;
 	@Autowired
 	UserProfilePostRepository profilePostRepository;
 	
@@ -49,6 +49,60 @@ public class TestController {
 		return userposts;
 	}	
 	
+	@PutMapping("/updateuserpostupvotess/{id}")
+	public Optional<UserPost> updateUserPostUpvotess(@PathVariable Long id, int upvotes) {
+		return postRepository.findById(id)
+			    .map(userpost -> {
+			      userpost.setUpvotes(upvotes);
+			      return postRepository.save(userpost);
+			    });	
+	}
+	
+	@PutMapping("/updateuserpostupvotes/{id}")
+	public Optional<UserPost> updateUserPostUpvotes(@RequestBody UserPost newUserPost, @PathVariable Long id) {
+		return postRepository.findById(id)
+			    .map(userpost -> {
+			      userpost.setUpvotes(newUserPost.getUpvotes());
+			      return postRepository.save(userpost);
+			    });	
+	}
+	
+	@GetMapping("/userpostbyid/{id}")
+	public ResponseEntity<UserPost> findPostById(@PathVariable(value = "id") Long userId) throws Exception {
+		UserPost userpost = postRepository.findById(userId)
+	               .orElseThrow(() -> new Exception("id " + userId + " not found"));
+	        return ResponseEntity.ok().body(userpost);		
+	}
+	
+	@PostMapping("/create")
+	public UserPost createPost( @RequestBody UserPost userpost) {
+        return postRepository.save(userpost);
+	}
+	
+	@DeleteMapping("/deleteuserpostbyid/{id}")
+	public void deleteUserPostById(@PathVariable(value = "id") Long userId) throws Exception {
+		postRepository.deleteById(userId);				
+	}
+	
+//	 Updaterar oavsett om du fyler i det eller inte. Om du inte fyller  ett fällt kommer det ändra till null oavsett omd et var något där innan.
+	@PutMapping("/updateuserpost/{id}")
+	public Optional<UserPost> updateUserFeedPost(@RequestBody UserPost newUserPost, @PathVariable Long id) {
+		return postRepository.findById(id)
+			    .map(userpost -> {
+			      userpost.setText(newUserPost.getText());
+			      userpost.setUpvotes(newUserPost.getUpvotes());
+			      userpost.setUserId(newUserPost.getUserId());
+			      userpost.setUsername(newUserPost.getUsername());
+			      return postRepository.save(userpost);
+			    });
+	}
+	
+	
+//	================================
+	
+	
+	
+	
 //	Hämtar mottagarnamn beroende på vad man skickar in
 	@GetMapping("/userprofilepostbyrecievername/{recievername}")
 	public List<UserProfilePost> findByRecievername(@PathVariable String recievername) {
@@ -58,6 +112,8 @@ public class TestController {
 		return userprofileposts;
 		}
 	
+
+	
 	@GetMapping("/userprofilepostbyrecieverid/{recieverid}")
 	public List<UserProfilePost> findByRecieverid(@PathVariable int recieverid) {
 		Query q = em.createQuery("select userprofilepost from UserProfilePost userprofilepost where userprofilepost.recieverId = :recieverid ORDER BY userprofilepost.date DESC");
@@ -66,7 +122,7 @@ public class TestController {
 		return userprofileposts;
 		}
 	
-	@GetMapping("/userfeedpostbyauthorid/{authorid}")
+	@GetMapping("/userprofilepostbyauthorid/{authorid}")
 	public List<UserProfilePost> findByAuthorid(@PathVariable int authorid) {
 		Query q = em.createQuery("select userprofilepost from UserProfilePost userprofilepost where userprofilepost.authorId = :authorid ORDER BY userprofilepost.date DESC");
 		q.setParameter("authorid", authorid);
@@ -87,17 +143,7 @@ public class TestController {
 	/*	Man kan skicka in parametrarna "text" och "userId" i json för att skapa en post
 	 * 
 	 * */	
-	@PostMapping("/create")
-	public UserPost createPost( @RequestBody UserPost userpost) {
-        return postRepository.save(userpost);
-	}
 	
-	@GetMapping("/userpostbyid/{id}")
-	public ResponseEntity<UserPost> findPostById(@PathVariable(value = "id") Long userId) throws Exception {
-		UserPost userpost = postRepository.findById(userId)
-	               .orElseThrow(() -> new Exception("id " + userId + " not found"));
-	        return ResponseEntity.ok().body(userpost);		
-	}
 	
 	@PostMapping("/createuserprofilepost")
 	public UserProfilePost createuserfeedpost( @RequestBody UserProfilePost userprofilepost) {
@@ -118,10 +164,6 @@ public class TestController {
 		profilePostRepository.deleteById(userId);				
 	}
 	
-	@DeleteMapping("/deleteuserpostbyid/{id}")
-	public void deleteUserPostById(@PathVariable(value = "id") Long userId) throws Exception {
-		postRepository.deleteById(userId);				
-	}
 	
 	@PutMapping("/updateuserprofileupvotes/{id}")
 	public Optional<UserProfilePost> updateUserProfileUpvotes(@RequestBody UserProfilePost newUserProfilePost, @PathVariable Long id) {
@@ -132,25 +174,5 @@ public class TestController {
 			    });	
 	}
 	
-	@PutMapping("/updateuserpostupvotes/{id}")
-	public Optional<UserPost> updateUserPostUpvotes(@RequestBody UserPost newUserPost, @PathVariable Long id) {
-		return postRepository.findById(id)
-			    .map(userpost -> {
-			      userpost.setUpvotes(newUserPost.getUpvotes());
-			      return postRepository.save(userpost);
-			    });	
-	}
-//	 Updaterar oavsett om du fyler i det eller inte. Om du inte fyller  ett fällt kommer det ändra till null oavsett omd et var något där innan.
-	@PutMapping("/updateuserpost/{id}")
-	public Optional<UserPost> updateUserFeedPost(@RequestBody UserPost newUserPost, @PathVariable Long id) {
-		return postRepository.findById(id)
-			    .map(userpost -> {
-			      userpost.setText(newUserPost.getText());
-			      userpost.setUpvotes(newUserPost.getUpvotes());
-			      userpost.setUserId(newUserPost.getUserId());
-			      userpost.setUsername(newUserPost.getUsername());
-			      return postRepository.save(userpost);
-			    });	
-	}
 
 }
