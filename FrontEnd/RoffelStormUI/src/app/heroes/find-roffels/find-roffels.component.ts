@@ -29,5 +29,4 @@ export class FindRoffelsComponent implements OnInit {
     this.userService.getUsers()
         .subscribe(users => this.users = users);
   }
-
 }

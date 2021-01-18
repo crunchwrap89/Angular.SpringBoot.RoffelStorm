@@ -1,12 +1,17 @@
-<div class="jumbotron"><h2>Connect with other roffels</h2> 
+<div class="jumbotron"><h2>Find other hideouts</h2> 
 </div>
-  
-  <ul class="users">
-    <li *ngFor="let user of users">
-      <a routerLink="/user/{{user.id}}">
-        <span class="badge">{{user.id}}</span>{{user.username}} 
-      </a>
-    </li>
-  </ul>
-  
+  <div class="container">
+    <div class="flexbox" *ngFor="let user of users">
+      <div class="clickable" routerLink="/user/{{user.id}}">
+      <p routerLink="/user/{{user.id}}">
+        {{user.username}} 
+      </p>
+      <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="img-circle"
+      />
+    </div>
+    </div>
+  </div>
   
