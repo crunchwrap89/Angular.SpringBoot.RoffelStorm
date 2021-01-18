@@ -31,7 +31,7 @@ import com.teamroffel.userpost.roffelstorm.repository.UserProfilePostRepository;
 
 @RestController
 @RequestMapping("/api")
-public class TestController {
+public class PostController {
 
 	@Autowired
 	UserPostRepository postRepository;
@@ -41,21 +41,15 @@ public class TestController {
 	@PersistenceContext
 	private EntityManager em;
 	
-	
 	@GetMapping("/all")
 	public List<UserPost> getAllUserposts() {
-		Query q = em.createQuery("select userpost from UserPost userpost ORDER BY date DESC");
-		List<UserPost> userposts = q.getResultList();
+		List<UserPost> userposts = postRepository.findAllByOrderByDateDesc();
 		return userposts;
-	}	
+	}
 	
-	@PutMapping("/updateuserpostupvotess/{id}")
-	public Optional<UserPost> updateUserPostUpvotess(@PathVariable Long id, int upvotes) {
-		return postRepository.findById(id)
-			    .map(userpost -> {
-			      userpost.setUpvotes(upvotes);
-			      return postRepository.save(userpost);
-			    });	
+	@GetMapping("/findpostsbyusername/{name}")
+	public List<UserPost> findUserPostsById(@PathVariable String name) {
+		return postRepository.findByusername(name);
 	}
 	
 	@PutMapping("/updateuserpostupvotes/{id}")

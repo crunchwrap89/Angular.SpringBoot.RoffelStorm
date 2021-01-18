@@ -16,11 +16,18 @@ import com.teamroffel.userpost.roffelstorm.model.UserProfilePost;
 @Repository
 public interface UserPostRepository extends JpaRepository<UserPost, Long> {
 
-	public UserPost findByusername(String name);
+	public List <UserPost> findByusername(String name);
+	
+	public List <UserPost> findAll();
+	
+	public List <UserPost> findAllByOrderByDateDesc();
 	
 	public Optional<UserPost> findById(Long postId);
+
 	
 	public ResponseEntity<UserPost> findPostById(@PathVariable(value = "id") Long userId);
+	
+	
 	
 //	public UserPost findBy
 }

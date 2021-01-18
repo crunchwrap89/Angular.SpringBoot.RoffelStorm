@@ -3,6 +3,7 @@ package com.teamroffel.userpost.roffelstorm;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -27,16 +28,22 @@ public class TestClass {
 	    // write test cases here
 
 	    @Test
-	    public void whenFindByName_thenReturnUserName() {
+	    public void whenFindPostByName_thenReturnAllUserPostsByName() {
 	        UserPost usr1 = new UserPost(null, 1, "alex", "ldkgsalgal", 0);
 	        entityManager.persist(usr1);
 	        entityManager.flush();
-	        UserPost found = userPostRepository.findByusername("alex");
-	        assertEquals(found.getUsername(), usr1.getUsername());
+	        UserPost usr2 = new UserPost(null, 1, "alex", "ldkgsalgal", 0);
+	        entityManager.persist(usr2);
+	        entityManager.flush();
+	        UserPost usr3 = new UserPost(null, 2, "Egone", "ldkgsalgal", 0);
+	        entityManager.persist(usr3);
+	        entityManager.flush();
+	        List<UserPost> found = userPostRepository.findByusername("alex");
+	        assertEquals(found.size(), 2);
 	    }
 	    
 	    @Test
-	    public void whenFindAll_thenReturnsAll() {
+	    public void whenFindAllUserPosts_thenReturnsAllUserPosts() {
 	    	UserPost usr1 = new UserPost(null, 1, "alex", "ldkgsalgal", 0);
 	        entityManager.persist(usr1);
 	        entityManager.flush();
@@ -53,21 +60,24 @@ public class TestClass {
 	        
 	    }
 	    
-//	    public void findById() {
-//	    	 UserPost usr1 = new UserPost(null, 1, "alex", "ldkgsalgal", 0);
-//		     entityManager.persist(usr1);
-//		     entityManager.flush();
-//		     Long usrid = usr1.getId();
-//		     UserPost found = userPostRepository.findById(usrid);
-//		        assertEquals(found.getUsername(), usr1.getUsername());
-//		      
-//	    }
+	    @Test
+	    public void whenFindPostById_thenReturnRightPost() {
+	    	 UserPost usr1 = new UserPost(null, 1, "alex", "ldkgsalgal", 0);
+		     entityManager.persist(usr1);
+		     entityManager.flush();
+		     Optional<UserPost> found = userPostRepository.findById(usr1.getId());
+		        assertEquals(found.get(), usr1);
+		      
+	    }
 	    
 	    @Test
 	    public void updateUserPostUpvotes() {
 	    	UserPost usr1 = new UserPost(null, 1, "alex", "ldkgsalgal", 0);
 	        entityManager.persist(usr1);
 	        entityManager.flush();
+	        
+//	        UserPost usr2 = userPostRepository.);
+//	        assertEquals(usr2.getUsername(), usr1.getUsername());
 	        
 	        
 
