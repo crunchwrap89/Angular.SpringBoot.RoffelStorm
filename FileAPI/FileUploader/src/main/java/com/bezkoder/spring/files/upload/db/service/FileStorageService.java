@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
+import com.bezkoder.spring.files.upload.db.model.ProfilePicz;
+import com.bezkoder.spring.files.upload.db.repository.ProfilePiczRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,16 +19,30 @@ import com.bezkoder.spring.files.upload.db.repository.FileDBRepository;
 public class FileStorageService {
   @Autowired
   private FileDBRepository fileDBRepository;
+  @Autowired
+  private ProfilePiczRepository profilePiczRepository;
 
-  public FileDB store(MultipartFile file, String path, int userId) throws IOException {
+  public FileDB storePicture(MultipartFile file, String path, int userId) throws IOException {
     String fileName = StringUtils.cleanPath(file.getOriginalFilename());
     FileDB FileDB = new FileDB(fileName, path, userId);
 
     return fileDBRepository.save(FileDB);
   }
 
+  public ProfilePicz storeProfilePic(MultipartFile file, String path, int userId) throws IOException {
+    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    ProfilePicz profilePicz = new ProfilePicz(fileName, path, userId);
+
+    return profilePiczRepository.save(profilePicz);
+  }
+
+
   public FileDB getFile(String id) {
     return fileDBRepository.findById(id).get();
+  }
+
+  public Stream<ProfilePicz> getAllProfilePics() {
+    return profilePiczRepository.findAll().stream();
   }
 
   public Stream<FileDB> getAllFiles() {
