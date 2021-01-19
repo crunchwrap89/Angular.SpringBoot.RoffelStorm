@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamroffel.userpost.roffelstorm.model.UserPost;
-import com.teamroffel.userpost.roffelstorm.repository.UsePostRepository;
+import com.teamroffel.userpost.roffelstorm.repository.UserPostRepository;
 
 @Service
 public class UserPostService implements IUserPostService {
 
     @Autowired
-    private UsePostRepository repository;
+    private UserPostRepository repository;
 
     @Override
     public List<UserPost> findAll() {
@@ -22,4 +22,5 @@ public class UserPostService implements IUserPostService {
 
         return userPosts;
     }
+    
 }
