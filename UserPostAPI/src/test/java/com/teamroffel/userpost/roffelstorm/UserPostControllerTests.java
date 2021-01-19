@@ -17,7 +17,7 @@ import com.teamroffel.userpost.roffelstorm.repository.UserPostRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class TestClass {
+public class UserPostControllerTests {
 
 	    @Autowired
 	    private TestEntityManager entityManager;
@@ -55,7 +55,6 @@ public class TestClass {
 	        entityManager.flush();
 	        
 	        List<UserPost> usrpt = userPostRepository.findAll();
-	        
 	        assertEquals(3, usrpt.size());
 	        
 	    }

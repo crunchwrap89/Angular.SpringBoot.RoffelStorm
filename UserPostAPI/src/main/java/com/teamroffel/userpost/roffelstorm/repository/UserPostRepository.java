@@ -24,10 +24,6 @@ public interface UserPostRepository extends JpaRepository<UserPost, Long> {
 	
 	public Optional<UserPost> findById(Long postId);
 
-	
-	public ResponseEntity<UserPost> findPostById(@PathVariable(value = "id") Long userId);
-	
-	
-	
-//	public UserPost findBy
+	public ResponseEntity<UserPost> findPostById(Long userId);
+
 }
