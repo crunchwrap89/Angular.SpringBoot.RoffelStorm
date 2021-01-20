@@ -14,7 +14,7 @@
     </div>
   </div>
   
-  <label class="btn btn-default">
+  <label>
     <input type="file" multiple (change)="selectFiles($event)" />
   </label>
   
@@ -26,9 +26,9 @@
     Upload
   </button>
   
-  <div class="alert alert-light" role="alert">{{ message }}</div>
-  
-  <div class="card">
+  <div class="alert alert-light" style="background-color: whitesmoke;" role="alert">{{ message }}</div>
+
+  <!-- <div class="card">
     <div class="card-header">List of Files</div>
     <ul
       class="list-group list-group-flush"
@@ -38,5 +38,11 @@
         <a href="{{ file.url }}">{{ file.name }}</a>
       </li>
     </ul>
+  </div> -->
+
+  <div class="card-columns">
+    <div class="card" *ngFor="let file of fileInfos | async">
+      <img class="card-img-top" src="../assets/{{file.path}}">
+    </div>
   </div>
   

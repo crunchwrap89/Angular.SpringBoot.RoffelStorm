@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { HttpClient } from '@angular/common/http';
-import { UserPost } from '../models/userpost'
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { ProfilePost } from '../heroes/profilepost'
+import { UserService } from '../heroes/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,14 +16,21 @@ export class ProfileComponent implements OnInit {
   currentUser: any;
   status: any;
   errorMessage: any;
-  userPost = new UserPost();
+  userPost = new ProfilePost();
   postcontent: string;
+  posts: ProfilePost;
 
-  constructor(private token: TokenStorageService,
-              private http: HttpClient) { }
+  constructor(
+    private token: TokenStorageService,
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private location: Location,
+    private http: HttpClient
+  ) {}
             
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
+    this.getUserPosts();
   }
 
   deleteAccount(id){
@@ -37,22 +48,33 @@ export class ProfileComponent implements OnInit {
   });
 }
 
-  createPost(currentuser, post){
-    this.userPost.userId = currentuser.id;
-    this.userPost.username = currentuser.username;
-    this.userPost.text = post;
-    this.http.post('http://localhost:8082/api/create/', this.userPost)
-    .subscribe(
-      (val) => {
-        console.log("Post made",
-        val);
-      },
-      response => {
-        console.log("POST call made error", response);
-      },
-      () => {
-        console.log("The post observable is now conpleted");
-      }
-    )
-  };
+createPost(post){
+  this.userPost.authorId = this.currentUser.id;
+  this.userPost.text = post;
+  this.userPost.recieverId = this.currentUser.id
+  this.userPost.authorName = this.currentUser.username
+  this.userPost.recieverName = this.currentUser.username
+  this.http.post('http://localhost:8082/api/createuserprofilepost', this.userPost)
+  .subscribe(
+    (val) => {
+      console.log("Post erghjdsrgjhk",
+      val);
+    },
+    response => {
+      console.log("POST call in error", response);
+    },
+    () => {
+      console.log("The post observable is now conpleted");
+      this.postcontent = ''; 
+      this.getUserPosts();
+    }
+  )
+};
+
+getUserPosts(): void {
+  const id = this.currentUser.id;
+  this.userService.getUserPosts(id).subscribe(posts => this.posts = posts);
+
+}
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadFilesService } from 'src/app/services/upload-files.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { TokenStorageService } from '../../_services/token-storage.service';
 import { Observable } from 'rxjs';
 
 
@@ -10,13 +11,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./upload-files.component.css']
 })
 export class UploadFilesComponent implements OnInit {
-
+  currentUser: any;
   selectedFiles: FileList;
   progressInfos = [];
   message = '';
 
   fileInfos: Observable<any>;
-  
+
+  constructor(private uploadService: UploadFilesService, private token: TokenStorageService) { }
 
   selectFiles(event): void {
     this.progressInfos = [];
@@ -32,7 +34,7 @@ export class UploadFilesComponent implements OnInit {
   upload(idx, file): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
   
-    this.uploadService.upload(file).subscribe(
+    this.uploadService.upload(file, this.currentUser.id).subscribe(
       event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
@@ -44,14 +46,15 @@ export class UploadFilesComponent implements OnInit {
         this.progressInfos[idx].value = 0;
         this.message = 'Could not upload the file:' + file.name;
       });
+      console.log(this.currentUser.id);
   }
 
   ngOnInit(): void {
-    this.fileInfos = this.uploadService.getFiles();
+    this.currentUser = this.token.getUser();
+    this.fileInfos = this.uploadService.getFilesByUserId(this.currentUser.id);
+    
   }
   
-
-  constructor(private uploadService: UploadFilesService) { }
 }
 
 

@@ -1,63 +1,44 @@
-.users {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 25em;
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
-.users li {
-  position: relative;
-  cursor: pointer;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 2em;
-  border-radius: 4px;
+.flexbox {
+    background-color: #7fffd4;
+    padding: 10px;
+    margin:10px;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: 0.3s;
 }
 
-.users li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .1em;
+.flexbox:hover {
+    scale: 1.1
 }
 
-.users a {
-  color: #333;
-  text-decoration: none;
-  position: relative;
-  display: block;
-  width: 250px;
-}
+.flexbox:nth-child(1) { background: rgb(225, 241, 152); height: 290px;  }
+.flexbox:nth-child(2) { background: rgb(245, 245, 157);height: 250px;  }
+.flexbox:nth-child(3) { background: rgb(191, 207, 120); height: 270px; }
+.flexbox:nth-child(4) { background: rgb(157, 238, 157);height: 240px; }
+.flexbox:nth-child(5) { background: rgb(228, 178, 248); height: 270px; }
+.flexbox:nth-child(6) { background: rgb(170, 245, 170); height: 290px; }
+.flexbox:nth-child(7) { background: rgb(245, 206, 147); height: 240px; }
+.flexbox:nth-child(8) { background: rgb(134, 221, 192);height: 270px; }
+.flexbox:nth-child(9) { background: rgb(229, 184, 250); height: 290px; }
+.flexbox:nth-child(10) { background: rgb(184, 236, 184); height: 270px; }
 
-.users a:hover {
-  color: #607D8B;
-}
 
-.users .badge {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: #405061;
-  line-height: 1em;
-  position: relative;
-  left: -1px;
-  top: -4px;
-  height: 2.5em;
-  min-width: 16px;
-  text-align: right;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
+p{
+    color: white;
+    text-shadow: 2px 2px 2px rgb(180, 180, 180); 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    
 }
-
-button {
-  background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: Arial, sans-serif;
-}
-
-button:hover {
-  background-color: #cfd8dc;
+.img-circle {
+    border-radius: 50%;
+    width: 90%;
 }
