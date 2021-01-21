@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.teamroffel</groupId>
-	<artifactId>MailAPI</artifactId>
+	<artifactId>mailapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MailAPI</name>
+	<name>mailapi</name>
 	<description>API for sending mail</description>
 	<properties>
 		<java.version>1.8</java.version>

@@ -1,4 +1,4 @@
-package com.teamroffel.MailAPI;
+package com.teamroffel.mailapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
