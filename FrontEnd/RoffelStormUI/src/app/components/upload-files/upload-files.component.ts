@@ -15,8 +15,8 @@ export class UploadFilesComponent implements OnInit {
   selectedFiles: FileList;
   progressInfos = [];
   message = '';
-
   fileInfos: Observable<any>;
+  file: any;
 
   constructor(private uploadService: UploadFilesService, private token: TokenStorageService) { }
 
@@ -46,13 +46,11 @@ export class UploadFilesComponent implements OnInit {
         this.progressInfos[idx].value = 0;
         this.message = 'Could not upload the file:' + file.name;
       });
-      console.log(this.currentUser.id);
   }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     this.fileInfos = this.uploadService.getFilesByUserId(this.currentUser.id);
-    
   }
   
 }

@@ -2,11 +2,20 @@
   <header class="jumbotron header">
     <h3>
       <strong>Your</strong> Hideout
-      <button type="button" class="btn" style="background-color: indianred; color: white; float: right;" (click)="deleteAccount(currentUser.id)">Delete Account</button>
     </h3>
+    <button *ngIf="!editMode" type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white; float: right;" (click)="isEditMode()">Edit Account</button>
+    <button *ngIf="editMode" type="button" class="btn" style="background-color: indianred; color: white; float: right;" (click)="deleteAccount(currentUser.id)">Delete Account</button>
+    <button *ngIf="editMode" type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white; float: right;" (click)="saveEdit()">Save</button>      
   </header>
   <div class="wrap">
     <div class="divLeft">
+      <label class="hoverable" for="fileInput">
+        <img class="profile-img" [src]="url ? url : '//ssl.gstatic.com/accounts/ui/avatar_2x.png'"> 
+        <div class="hover-text">Choose picture</div>
+        <div class="background"></div>
+      </label>
+      <br/>
+      <input id="fileInput" type='file' (change)="onSelectFile($event)">
       <div class="jumbotron postBtnDiv">
         <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput placeholder="What's on your mind?"></textarea>
         <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(postcontent)">Post</button>
@@ -26,12 +35,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
   </div>
   
   <ng-template #loggedOut>

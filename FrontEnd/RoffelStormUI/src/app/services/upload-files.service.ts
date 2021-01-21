@@ -24,12 +24,29 @@ export class UploadFilesService {
     return this.http.request(req);
   }
 
+  uploadProfilePic(file: File, userId): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+    formData.append('userId', userId);
+    const req = new HttpRequest('POST', `${this.baseUrl}/uploadprofilepic`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
+  }
+
   getFiles(): Observable<any> {
     return this.http.get(`${this.baseUrl}/files`);
   }
 
   getFilesByUserId(userId): Observable<any> {
     return this.http.get(`${this.baseUrl}/files/` + userId);
+  }
+
+  getProfilePicByUserId(userId): Observable<any> {
+    return this.http.get(`${this.baseUrl}/profilepics/` + userId)
   }
 }
 

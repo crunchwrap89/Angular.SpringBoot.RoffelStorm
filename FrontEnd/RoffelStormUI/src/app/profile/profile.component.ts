@@ -3,9 +3,10 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
+import { Observable } from 'rxjs';
 import { ProfilePost } from '../heroes/profilepost'
 import { UserService } from '../heroes/user.service';
+import { UploadFilesService } from 'src/app/services/upload-files.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,18 +20,24 @@ export class ProfileComponent implements OnInit {
   userPost = new ProfilePost();
   postcontent: string;
   posts: ProfilePost;
+  selectedFile: File;
+  profilePics: Observable<any>;
+  profilePic: any;
+  editMode = false;
 
   constructor(
     private token: TokenStorageService,
     private route: ActivatedRoute,
     private userService: UserService,
     private location: Location,
-    private http: HttpClient
+    private http: HttpClient,
+    private uploadService: UploadFilesService
   ) {}
             
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     this.getUserPosts();
+    this.profilePics = this.uploadService.getProfilePicByUserId(this.currentUser.id);
   }
 
   deleteAccount(id){
@@ -46,6 +53,14 @@ export class ProfileComponent implements OnInit {
           console.error('There was an error!', error);
       }
   });
+}
+
+isEditMode() {
+  this.editMode = true;
+}
+
+saveEdit() {
+  this.editMode = false;
 }
 
 createPost(post){
@@ -76,5 +91,13 @@ getUserPosts(): void {
   this.userService.getUserPosts(id).subscribe(posts => this.posts = posts);
 
 }
+
+onSelectFile(event): void {
+  if (event.target.files && event.target.files[0]) {
+    this.uploadService.uploadProfilePic(event.target.files[0], this.currentUser.id);
+  }
+
+}
+
 
 }
