@@ -1,20 +1,17 @@
 <div class="container">
-    <header class="jumbotron">
+    <header class="jumbotron" style="background-color: palegreen;">
       <h1>Public wall</h1>
     </header>
-    <div class="jumbotron" style="width: 50%;">
-      <h4>What's on your mind?</h4>
-      <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput></textarea>
+    <div class="postMaker">
+      <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput placeholder="What's on your mind?"></textarea>
       <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(currentUser, postcontent)">Post</button>
     </div>
-    <div class="jumbotron" *ngFor="let post of allPosts">
-      <div class="flexcontainer">
+    <div class="jumbotron postDiv" *ngFor="let post of allPosts | orderBy: order : reverse">
           <div class="flexbox1" style="background-color: aquamarine;"> <p><b>Author:</b> {{post.username}}</p>   </div>
           <div class="flexbox2"> <p><b>Posted at:</b> {{ post.date | date:'medium' }}</p>   </div>
           <div class="flexbox3"> <p><b>Upvotes:</b> {{post.upvotes}}</p>   </div>  
           <div class="flexbox4"> <p>{{post.text}}</p>   </div>
-      </div>
-      <button type="button" class="btn btn1"  (click)="upVote()">up vote</button>
-      <button type="button" class="btn btn2"  (click)="downVote()">down vote</button>
+      <button type="button" class="btn btn1"  (click)="upVote(post.id, post.upvotes)">up vote</button>
+      <button type="button" class="btn btn2"  (click)="downVote(post.id, post.upvotes)">down vote</button>
     </div>
   </div>

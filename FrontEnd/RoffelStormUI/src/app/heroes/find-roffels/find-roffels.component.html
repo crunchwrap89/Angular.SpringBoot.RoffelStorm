@@ -1,6 +1,25 @@
-<div class="jumbotron"><h2>Find other hideouts</h2> 
+<div class="container">
+<div class="jumbotron header"><h1>Find other hideouts</h1> 
 </div>
-  <div class="container">
+
+<div class="flex-container2 jumbotron">
+  <h3 style="vertical-align: middle;">Hideout of the week</h3>
+  <div class="flexbox">
+    <div class="clickable" routerLink="/user/5">
+      <p routerLink="/user/5">
+        ROFFEL
+      </p>
+    <img
+    id="profile-img"
+    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+    class="img-circle2"
+    />
+  </div>
+  </div>
+</div>
+
+
+  <div class="flex-container">
     <div class="flexbox" *ngFor="let user of users">
       <div class="clickable" routerLink="/user/{{user.id}}">
       <p routerLink="/user/{{user.id}}">
@@ -14,4 +33,4 @@
     </div>
     </div>
   </div>
-  
+</div>

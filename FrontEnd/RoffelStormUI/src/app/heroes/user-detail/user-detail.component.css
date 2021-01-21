@@ -28,6 +28,18 @@ input:focus:-moz-placeholder{
 color: transparent;
 }
 
+.container {
+  padding: 3em;
+}
+.header {
+  background-color: rgb(138, 207, 207);
+}
+
+  .postMaker {
+    padding: 1em;
+    width: 25em; 
+    margin: 25px;
+  }
   
   .flexbox1 {
       display: inline-block;
@@ -83,11 +95,28 @@ color: transparent;
       padding: 0.8em 0.7em 0 0.7em;
       background-color: whitesmoke;
       line-height: 1em;
-      height: 15.5em;
+      height: auto;
+      min-height: 4em;
       min-width: 16px;
       text-align: left;
       border-radius: 4px;
     }
+
+    .postDiv {
+      width: 45em;
+      padding: 25px;
+    }
+
+    .postDiv:nth-child(1) { background: rgb(225, 241, 152); width: 45em; }
+    .postDiv:nth-child(2) { background: rgb(245, 245, 157); width: 35em;  }
+    .postDiv:nth-child(3) { background: rgb(191, 207, 120); width: 37em; }
+    .postDiv:nth-child(4) { background: rgb(157, 238, 157); width: 35em; }
+    .postDiv:nth-child(5) { background: rgb(228, 178, 248); width: 39em; }
+    .postDiv:nth-child(6) { background: rgb(170, 245, 170); width: 42em; }
+    .postDiv:nth-child(7) { background: rgb(245, 206, 147); width: 41em; }
+    .postDiv:nth-child(8) { background: rgb(134, 221, 192); width: 38em; }
+    .postDiv:nth-child(9) { background: rgb(229, 184, 250); width: 34em; }
+    .postDiv:nth-child(10) { background: rgb(184, 236, 184); width: 33em; }
 
     .btn {
       background-color: #75d694;
