@@ -18,6 +18,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { UploadFilesComponent } from './components/upload-files/upload-files.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeroesModule } from './heroes/heroes.module';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { HeroesModule } from './heroes/heroes.module';
     HttpClientModule,
     HeroesModule,
     AppRoutingModule,
+    OrderModule
   ],
   declarations: [
     AppComponent,

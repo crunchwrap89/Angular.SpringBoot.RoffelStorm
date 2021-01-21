@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+h1 {
+    color: rgb(9, 33, 71);
+    font-weight: 700;
+}
+h2 {
+    color: rgb(9, 33, 71);
+    font-weight: 700;
+}
+
