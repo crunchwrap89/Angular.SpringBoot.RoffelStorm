@@ -26,8 +26,15 @@
         {{user.username}} 
       </p>
       <img
+      *ngIf="user.profilePicPath == '' || user.profilePicPath == null"
       id="profile-img"
       src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="img-circle"
+      />
+      <img
+      *ngIf="user.profilePicPath !== '' || user.profilePicPath !== null"
+      id="profile-img"
+      src="../../../assets/{{user.profilePicPath}}"
       class="img-circle"
       />
     </div>
