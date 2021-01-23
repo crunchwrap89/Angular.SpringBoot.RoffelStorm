@@ -19,6 +19,7 @@ import { UploadFilesComponent } from './components/upload-files/upload-files.com
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeroesModule } from './heroes/heroes.module';
 import { OrderModule } from 'ngx-order-pipe';
+import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { OrderModule } from 'ngx-order-pipe';
     BoardModeratorComponent,
     BoardUserComponent,
     UploadFilesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ThemeSwitchComponent
   ],
    providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
