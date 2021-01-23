@@ -35,6 +35,11 @@ color: transparent;
   background-color: rgb(138, 207, 207);
 }
 
+.img-circle2 {
+  width: 20em;
+  border-radius: 50%;
+}
+
   .postMaker {
     padding: 1em;
     width: 25em; 

@@ -45,6 +45,13 @@ getUserPosts(id): Observable<any> {
   );
 }
 
+getUserOfWeek(): Observable<User> {
+  const url = `${this.AUTH_API_URL}/weeklyuser`;
+  return this.http.get<User>(url).pipe(
+    tap(_ => this.log(`fetched weeklyuser`)),
+    catchError(this.handleError<User>(`getUser`))
+  );
+}
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
