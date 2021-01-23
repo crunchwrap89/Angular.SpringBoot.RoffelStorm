@@ -2,7 +2,7 @@
     padding: 3em;
 }
 .header {
-    background-color: rgb(236, 200, 240);
+    background-color: var(--a3);
 }
 
 .flex-container {
@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    background-color: var(--a1);
 }
 .flexbox {
     background-color: #7fffd4;
@@ -30,16 +31,16 @@
     scale: 1.1
 }
 
-.flexbox:nth-child(1) { background: rgb(225, 241, 152);  }
-.flexbox:nth-child(2) { background: rgb(245, 245, 157);  }
-.flexbox:nth-child(3) { background: rgb(191, 207, 120); }
-.flexbox:nth-child(4) { background: rgb(157, 238, 157); }
-.flexbox:nth-child(5) { background: rgb(228, 178, 248); }
-.flexbox:nth-child(6) { background: rgb(170, 245, 170); }
-.flexbox:nth-child(7) { background: rgb(245, 206, 147); }
-.flexbox:nth-child(8) { background: rgb(134, 221, 192); }
-.flexbox:nth-child(9) { background: rgb(229, 184, 250); }
-.flexbox:nth-child(10) { background: rgb(184, 236, 184);}
+.flexbox:nth-child(1) { background: var(--a3);  }
+.flexbox:nth-child(2) { background: var(--a3);  }
+.flexbox:nth-child(3) { background: var(--a2); }
+.flexbox:nth-child(4) { background: var(--a3); }
+.flexbox:nth-child(5) { background: var(--a1); }
+.flexbox:nth-child(6) { background: var(--a2); }
+.flexbox:nth-child(7) { background: var(--a1); }
+.flexbox:nth-child(8) { background: var(--a3); }
+.flexbox:nth-child(9) { background: var(--a2); }
+.flexbox:nth-child(10) { background: var(--a3);}
 
 
 p{
