@@ -3,17 +3,24 @@
 </div>
 
 <div class="flex-container2 jumbotron">
-  <h3 style="vertical-align: middle;">Hideout of the week</h3>
+  <h2>Hideout of the week</h2>
   <div class="flexbox">
-    <div class="clickable" routerLink="/user/5">
-      <p routerLink="/user/5">
-        ROFFEL
+    <div class="clickable" routerLink="/user/{{userOfTheWeek.id}}">
+      <p routerLink="/user/{{userOfTheWeek.id}}">
+        {{userOfTheWeek.username}}
       </p>
-    <img
-    id="profile-img"
-    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-    class="img-circle2"
-    />
+      <img
+      *ngIf="userOfTheWeek.profilePicPath == '' || userOfTheWeek.profilePicPath == null"
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="img-circle1"
+      />
+      <img
+      *ngIf="userOfTheWeek.profilePicPath !== null"
+      id="profile-img"
+      src="../../../assets/{{userOfTheWeek.profilePicPath}}"
+      class="img-circle1"
+      />
   </div>
   </div>
 </div>
@@ -29,13 +36,13 @@
       *ngIf="user.profilePicPath == '' || user.profilePicPath == null"
       id="profile-img"
       src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-      class="img-circle"
+      class="img-circle2"
       />
       <img
-      *ngIf="user.profilePicPath !== '' || user.profilePicPath !== null"
+      *ngIf="user.profilePicPath !== null"
       id="profile-img"
       src="../../../assets/{{user.profilePicPath}}"
-      class="img-circle"
+      class="img-circle3"
       />
     </div>
     </div>

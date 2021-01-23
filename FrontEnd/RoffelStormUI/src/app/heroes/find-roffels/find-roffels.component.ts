@@ -13,11 +13,13 @@ export class FindRoffelsComponent implements OnInit {
 
   selectedUser: User;
   users: User[];
+  userOfTheWeek: User;
 
   constructor(private userService: UserService, private messageService: MessageService) { }
 
   ngOnInit() {
     this.getUsers();
+    this.getUserOfWeek();
   }
 
   onSelect(user: User): void {
@@ -28,5 +30,10 @@ export class FindRoffelsComponent implements OnInit {
   getUsers(): void {
     this.userService.getUsers()
         .subscribe(users => this.users = users);
+  }
+
+  getUserOfWeek(): void {
+    this.userService.getUserOfWeek()
+        .subscribe(user => this.userOfTheWeek = user)
   }
 }
