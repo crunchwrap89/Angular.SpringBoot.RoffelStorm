@@ -3,10 +3,6 @@ package com.teamroffel.userpost.roffelstorm.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,9 +33,6 @@ public class PostController {
 	UserPostRepository postRepository;
 	@Autowired
 	UserProfilePostRepository profilePostRepository;
-	
-	@PersistenceContext
-	private EntityManager em;
 	
 	@GetMapping("/all")
 	public List<UserPost> getAllUserposts() {
@@ -93,9 +86,6 @@ public class PostController {
 	
 	
 //	================================
-	
-	
-	
 	
 //	Hämtar mottagarnamn beroende på vad man skickar in
 	@GetMapping("/userprofilepostbyrecievername/{recievername}")

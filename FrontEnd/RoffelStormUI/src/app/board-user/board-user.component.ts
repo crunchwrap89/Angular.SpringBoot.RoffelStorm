@@ -14,9 +14,12 @@ export class BoardUserComponent implements OnInit {
   userPost = new UserPost();
   postcontent: string;
   currentUser: any;
+  order: string = 'upvotes';
+  reverse: boolean = true;
 
   constructor(private token: TokenStorageService,
-              private http: HttpClient) { }
+              private http: HttpClient
+              ) {}
 
   ngOnInit() {
     this.http.get<any>('http://localhost:8082/api/all').subscribe(data => {
@@ -46,5 +49,47 @@ export class BoardUserComponent implements OnInit {
       }
     )
   };
+
+  upVote(postid, upvotes) {
+    let newUpvotes = upvotes + 1;
+    this.userPost.upvotes = newUpvotes;
+    console.log(this.userPost)
+    console.log(postid)
+    this.http.put(`http://localhost:8082/api/updateuserpostupvotes/${postid}`, this.userPost)
+    .subscribe(
+      (val) => {
+        this.userPost = new UserPost();
+        this.ngOnInit()
+        console.log("Post done",
+        val);
+      },
+      response => {
+        console.log("POST call in error", response);
+      },
+      () => {
+        console.log("The post observable is now complete");
+      }
+    )
+  }
+  downVote(postid, upvotes) {
+    let newUpvotes = upvotes - 1;
+    this.userPost.upvotes = newUpvotes;
+    console.log(this.userPost)
+    this.http.put(`http://localhost:8082/api/updateuserpostupvotes/${postid}`, this.userPost)
+    .subscribe(
+      (val) => {
+        this.userPost = new UserPost();
+        this.ngOnInit()
+        console.log("Post erghjdsrgjhk",
+        val);
+      },
+      response => {
+        console.log("POST call in error", response);
+      },
+      () => {
+        console.log("The post observable is now conpleted");
+      }
+    )
+  }
 
 }

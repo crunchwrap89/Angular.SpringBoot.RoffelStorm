@@ -1,5 +1,7 @@
 package com.teamroffel.roffelstormAUTHAPI.controllers;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,6 +11,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.teamroffel.roffelstormAUTHAPI.models.ERole;
 import com.teamroffel.roffelstormAUTHAPI.models.Role;
@@ -21,14 +39,6 @@ import com.teamroffel.roffelstormAUTHAPI.repository.RoleRepository;
 import com.teamroffel.roffelstormAUTHAPI.repository.UserRepository;
 import com.teamroffel.roffelstormAUTHAPI.security.jwt.JwtUtils;
 import com.teamroffel.roffelstormAUTHAPI.security.services.UserDetailsImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -147,5 +157,21 @@ public class AuthController {
     public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
         userRepository.deleteById(id);
         return ResponseEntity.ok(new MessageResponse("User removed"));
+    }
+    
+    @GetMapping("/weeklyuser")
+    public User getWeeklyUser() {
+    	Calendar sDateCalendar = new GregorianCalendar();
+    	long weekOfYear = sDateCalendar.get(Calendar.WEEK_OF_YEAR);
+    	Query q = em.createQuery("select user from User user");
+    	List<User> userlist = q.getResultList();
+    	User weeklyuser = userlist.get((int) weekOfYear);
+    	System.out.println(weeklyuser);
+    	if(weeklyuser == null) {
+    		weeklyuser = userlist.get(1);
+    		System.out.println("null but: "+ weeklyuser);
+    	}
+    	
+    	return weeklyuser;   	
     }
 }

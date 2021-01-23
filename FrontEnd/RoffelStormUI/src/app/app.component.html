@@ -1,6 +1,6 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark sticky-top bg-info">
-    <a href="/home" class="navbar-brand">RoffelStorm 2.0</a>
+  <nav class="navbar navbar-expand sticky-top">
+    <a href="/home" class="navbar-brand"><img class="Brand" alt="Roffelstorm" src="../assets/peeling-blue-sticker-hi.png"></a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
@@ -32,13 +32,14 @@
         <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
       </li>
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">Log Out</a>
       </li>
     </ul>
   </nav>
-
+<div class="snowCon">
   <div class="container">
   <!-- <div class="glitch"></div> -->
     <router-outlet></router-outlet>
   </div>
+</div>
 </div>

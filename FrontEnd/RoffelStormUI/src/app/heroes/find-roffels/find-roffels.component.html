@@ -1,17 +1,50 @@
-<div class="jumbotron"><h2>Find other hideouts</h2> 
+<div class="container">
+<div class="jumbotron header"><h1>Find other hideouts</h1> 
 </div>
-  <div class="container">
+
+<div class="flex-container2 jumbotron">
+  <h2>Hideout of the week</h2>
+  <div class="flexbox">
+    <div class="clickable" routerLink="/user/{{userOfTheWeek.id}}">
+      <p routerLink="/user/{{userOfTheWeek.id}}">
+        {{userOfTheWeek.username}}
+      </p>
+      <img
+      *ngIf="userOfTheWeek.profilePicPath == '' || userOfTheWeek.profilePicPath == null"
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="img-circle1"
+      />
+      <img
+      *ngIf="userOfTheWeek.profilePicPath !== null"
+      id="profile-img"
+      src="../../../assets/{{userOfTheWeek.profilePicPath}}"
+      class="img-circle1"
+      />
+  </div>
+  </div>
+</div>
+
+
+  <div class="flex-container">
     <div class="flexbox" *ngFor="let user of users">
       <div class="clickable" routerLink="/user/{{user.id}}">
       <p routerLink="/user/{{user.id}}">
         {{user.username}} 
       </p>
       <img
+      *ngIf="user.profilePicPath == '' || user.profilePicPath == null"
       id="profile-img"
       src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-      class="img-circle"
+      class="img-circle2"
+      />
+      <img
+      *ngIf="user.profilePicPath !== null"
+      id="profile-img"
+      src="../../../assets/{{user.profilePicPath}}"
+      class="img-circle3"
       />
     </div>
     </div>
   </div>
-  
+</div>

@@ -1,16 +1,28 @@
 <div class="container">
-<div class="jumbotron">
-  <h3>
+<div class="jumbotron header">
+  <h1>
     <strong>{{ user.username }}'s</strong> Hideout
-  </h3>
+  </h1>
+  <img
+  *ngIf="user.profilePicPath == '' || user.profilePicPath == null"
+  id="profile-img"
+  src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+  class="img-circle2"
+  />
+  <img
+  *ngIf="user.profilePicPath !== null"
+  id="profile-img"
+  src="../../../assets/{{user.profilePicPath}}"
+  class="img-circle2"
+  />
 </div>
 
-<div class="jumbotron" style="width: 50%;">
+<div class="postMaker">
   <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput placeholder="Write something on {{ user.username }}'s wall"></textarea>
   <button type="button" class="btn" style="color: white;" (click)="createPost(user.id, postcontent)">Post</button>
 </div>
 
-<div class="jumbotron" *ngFor="let post of posts">
+<div class="jumbotron postDiv" *ngFor="let post of posts">
   <div class="flexcontainer">
       <div class="flexbox1" style="background-color: aquamarine;"> <p><b>Author:</b> {{post.authorName}}</p>   </div>
       <div class="flexbox2"> <p><b>Posted at:</b> {{ post.date | date:'medium' }}</p>   </div> 
@@ -18,7 +30,7 @@
   </div>
 </div>
 
-<div class="jumbotron">
+<div>
   <button class="btn" style="color: white;" (click)="goBack()">go back</button>
 </div>
 
