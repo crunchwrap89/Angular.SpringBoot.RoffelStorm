@@ -1,9 +1,9 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
   <header class="jumbotron header">
-    <h3>
+    <h1>
       <strong>Your</strong> Hideout
       <button type="button" class="btn" style="background-color: indianred; color: white; float: right;" (click)="deleteAccount(currentUser.id)">Delete Account</button>
-    </h3>
+    </h1>
   </header>
   <div class="wrap">
     <div class="divLeft">

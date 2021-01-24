@@ -9,6 +9,9 @@
  width: 60%;
 }
 
+.container {
+  padding: 3em;
+}
 
 
 @-webkit-keyframes green-fade {   
@@ -50,17 +53,19 @@ color: transparent;
 
 .header {
   height: 10em;
+  background-color: var(--a2);
 }
 .upload {
-  background-color: whitesmoke;
+  background-color: var(--a2);
+  margin: 2em;
 }
 .postBtnDiv {
-  background-color: whitesmoke;
+  background-color: var(--a1);
 }
 
-/* .postContent {
-  width: 70%;
-} */
+.postContent {
+  background-color: var(--a2);
+}
 
   .flexbox1 {
       display: inline-block;
