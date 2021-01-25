@@ -1,3 +1,11 @@
+.container {
+  padding: 3em;
+}
+.header {
+  background-color: rgb(117, 199, 247);
+  height: auto;
+}
+
 .wrap {
   display: flex;
   flex-direction: row;
@@ -6,47 +14,60 @@
   width: 40%;
 }
 .divLeft {
- width: 60%;
+  width: 60%;
 }
 
+.img-circle {
+  border-radius: 50%;
+  width: 90%;
+}
 
+.img-circle2 {
+  border-radius: 50%;
+  width: 12em;
+}
 
-@-webkit-keyframes green-fade {   
-    0% {background-color: rgb(96, 143, 58);}
-    100% {background-color: none;}
+@-webkit-keyframes green-fade {
+  0% {
+    background-color: rgb(96, 143, 58);
   }
-  
-  @keyframes green-fade {
-    0% {background-color:rgb(96, 143, 58);}
-    100% {background-color: none;}
+  100% {
+    background-color: none;
   }
+}
 
-textarea:focus::-webkit-input-placeholder
-{
-color: transparent;
+@keyframes green-fade {
+  0% {
+    background-color: rgb(96, 143, 58);
+  }
+  100% {
+    background-color: none;
+  }
 }
-textarea:focus::-moz-placeholder{
-color: transparent;
+
+textarea:focus::-webkit-input-placeholder {
+  color: transparent;
 }
-textarea:focus:-moz-placeholder{
-color: transparent;
+textarea:focus::-moz-placeholder {
+  color: transparent;
 }
-input:focus::-webkit-input-placeholder
-{
-color: transparent;
+textarea:focus:-moz-placeholder {
+  color: transparent;
 }
-input:focus::-moz-placeholder{
-color: transparent;
+input:focus::-webkit-input-placeholder {
+  color: transparent;
 }
-input:focus:-moz-placeholder{
-color: transparent;
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+input:focus:-moz-placeholder {
+  color: transparent;
 }
 
 .jumbotron {
   height: auto;
   padding: 2em;
-
-}  
+}
 
 .header {
   height: 10em;
@@ -62,67 +83,120 @@ color: transparent;
   width: 70%;
 } */
 
-  .flexbox1 {
-      display: inline-block;
-      font-size: small;
-      color: #405061;
-      padding: 0.8em 0.7em 0 0.7em;
-      line-height: 1em;
-      position: relative;
-      left: -1px;
-      top: -4px;
-      height: 2.5em;
-      min-width: 16px;
-      text-align: right;
-      margin-right: .8em;
-      border-radius: 4px;
-    }
-    .flexbox2 {
-      display: inline-block;
-      font-size: small;
-      color: white;
-      padding: 0.8em 0.7em 0 0.7em;
-      background-color: #405061;
-      line-height: 1em;
-      position: relative;
-      left: -1px;
-      top: -4px;
-      height: 2.5em;
-      min-width: 16px;
-      text-align: right;
-      margin-right: .8em;
-      border-radius: 4px;
-      -webkit-animation: green-fade 1s ease-in 1;
-      animation: green-fade 1s ease-in 1;
-    }
-    .flexbox3 {
-      display: inline-block;
-      font-size: small;
-      color: white;
-      padding: 0.8em 0.7em 0 0.7em;
-      background-color: #405061;
-      line-height: 1em;
-      position: relative;
-      left: -1px;
-      top: -4px;
-      height: 2.5em;
-      min-width: 16px;
-      text-align: right;
-      margin-right: .8em;
-      border-radius: 4px;
-    }
-    .flexbox4 {
-      color: black;
-      padding: 0.8em 0.7em 0 0.7em;
-      background-color: whitesmoke;
-      line-height: 1em;
-      height: auto;
-      min-height: 5em;
-      min-width: 16px;
-      text-align: left;
-      border-radius: 4px;
-    }
+.flexbox {
+  background-color: #7fffd4;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 25px;
+  text-align: center;
+  transition-duration: 0.3s;
+}
 
-    .btn {
-      background-color: #75d694;
-    }
+.flexbox1 {
+  display: inline-block;
+  font-size: small;
+  color: #405061;
+  padding: 0.8em 0.7em 0 0.7em;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 2.5em;
+  min-width: 16px;
+  text-align: right;
+  margin-right: 0.8em;
+  border-radius: 4px;
+}
+.flexbox2 {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #405061;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 2.5em;
+  min-width: 16px;
+  text-align: right;
+  margin-right: 0.8em;
+  border-radius: 4px;
+  -webkit-animation: green-fade 1s ease-in 1;
+  animation: green-fade 1s ease-in 1;
+}
+.flexbox3 {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #405061;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 2.5em;
+  min-width: 16px;
+  text-align: right;
+  margin-right: 0.8em;
+  border-radius: 4px;
+}
+.flexbox4 {
+  color: black;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: whitesmoke;
+  line-height: 1em;
+  height: auto;
+  min-height: 5em;
+  min-width: 16px;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.flex-container2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.btn {
+  background-color: #75d694;
+}
+
+.hoverable {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  width: 12em;
+  border-radius: 50%;
+}
+.hoverable .hover-text {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.hoverable .background {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+.hoverable:hover .hover-text {
+  display: block;
+}
+.hoverable:hover .background {
+  display: block;
+}
+
+#fileInput {
+  display: none;
+}

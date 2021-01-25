@@ -52,7 +52,7 @@ export class UploadFilesComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     this.fileInfos = this.uploadService.getFilesByUserId(this.currentUser.id);
-    
+    console.log(this.fileInfos[0].path);
   }
   
 }

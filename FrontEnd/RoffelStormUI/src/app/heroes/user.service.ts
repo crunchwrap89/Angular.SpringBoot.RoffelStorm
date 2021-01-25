@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -12,7 +11,7 @@ import { MessageService } from '../message.service';
   providedIn: 'root',
 })
 export class UserService {
-
+  message: any;
   private AUTH_API_URL = 'http://localhost:8080/api/auth';
   private USERPOST_API_URL = 'http://localhost:8082/api/userprofilepostbyrecieverid';
 
@@ -63,6 +62,26 @@ getUserPosts(id): Observable<any> {
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`UserService: ${message}`);
+  }
+
+  // putProfilePic(file: File, userId): Observable<HttpEvent<any>> {
+  //   const formData: FormData = new FormData();
+  //   formData.append('file', file);
+  //   formData.append('userId', userId);
+  //   const req = new HttpRequest('PUT', `${this.AUTH_API_URL}/uploadrofilepic`, formData, {
+  //     reportProgress: true,
+  //     responseType: 'json'
+  //   });
+  //   return this.http.request(req);
+  // }
+
+  putProfilePic(file: File, userId) {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('userId', userId);
+    this.http.put<any>(`${this.AUTH_API_URL}/uploadrofilepic`, formData)
+      .subscribe(response => this.message = response.message);
+      console.log(this.message);
   }
 
 }
