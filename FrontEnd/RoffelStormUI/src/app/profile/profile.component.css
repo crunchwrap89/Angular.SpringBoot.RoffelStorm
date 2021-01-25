@@ -17,9 +17,9 @@
   width: 60%;
 }
 
-.img-circle {
-  border-radius: 50%;
-  width: 90%;
+
+.container {
+  padding: 3em;
 }
 
 .img-circle2 {
@@ -71,17 +71,19 @@ input:focus:-moz-placeholder {
 
 .header {
   height: 10em;
+  background-color: var(--a2);
 }
 .upload {
-  background-color: whitesmoke;
+  background-color: var(--a2);
+  margin: 2em;
 }
 .postBtnDiv {
-  background-color: whitesmoke;
+  background-color: var(--a1);
 }
 
-/* .postContent {
-  width: 70%;
-} */
+.postContent {
+  background-color: var(--a2);
+}
 
 .flexbox {
   background-color: #7fffd4;

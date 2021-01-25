@@ -1,6 +1,6 @@
 <div id="app">
   <nav class="navbar navbar-expand sticky-top">
-    <a href="/home" class="navbar-brand"><img class="Brand" alt="Roffelstorm" src="../assets/peeling-blue-sticker-hi.png"></a>
+    <a href="/home" class="navbar-brand"><img class="Brand" alt="Roffelstorm" src="../assets/logo2.png"></a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
@@ -26,7 +26,7 @@
         <a href="/login" class="nav-link" routerLink="login">Login</a>
       </li>
     </ul>
-
+<app-theme-switch></app-theme-switch>
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
         <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>

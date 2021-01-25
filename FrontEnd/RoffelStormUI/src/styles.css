@@ -1,11 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 h1 {
-    color: rgb(9, 33, 71);
+    color: rgb(88, 116, 86);
     font-weight: 700;
 }
 h2 {
-    color: rgb(9, 33, 71);
+    color: var(--font-color);
     font-weight: 700;
 }
 
+.theme-light {
+    --color-primary: rgb(141, 238, 149);      
+    --color-secondary: whitesmoke;
+    --color-accent: aquamarine;
+    --color-accent2: rgb(37, 112, 87);
+    --font-color: rgb(76, 145, 110);
+    --shadow-color: #f6f6f6;
+    --greyscale: 0%;
+    --a1: #ffeead;
+    --a2:#C5E7D7;
+    --a3: #88d8b0;
+}
+
+.theme-dark {
+    --color-primary: #555454;
+    --color-secondary: #48566e;
+    --color-accent: #5c5c5c;
+    --color-accent2: rgb(18, 44, 36);
+    --font-color: #1d2941;
+    --shadow-color:#3b4252;
+    --greyscale: 70%;
+    --a1: #858585;
+    --a2: #cecece;
+    --a3: #2c2c2c;
+}
