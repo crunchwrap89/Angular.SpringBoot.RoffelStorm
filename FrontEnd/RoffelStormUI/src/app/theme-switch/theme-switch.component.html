@@ -1,4 +1,4 @@
 <label id="switch" class="switch">
-    <input type="checkbox" (click)="setTheme()" id="slider" checked>
+    <input type="checkbox" (click)="toggleTheme()" id="slider" [ngModel]="checkers">
     <span class="slider round"></span>
 </label>

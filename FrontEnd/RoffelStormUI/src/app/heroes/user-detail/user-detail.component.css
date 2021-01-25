@@ -36,8 +36,11 @@ color: transparent;
 }
 
 .img-circle2 {
-  width: 20em;
+  width: 14em;
   border-radius: 50%;
+  border:white;
+  border-style: solid;
+  border-width: 10px;
 }
 
   .postMaker {

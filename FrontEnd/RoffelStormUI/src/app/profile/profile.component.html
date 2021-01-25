@@ -1,77 +1,49 @@
-<!-- <div class="container" *ngIf="currentUser; else loggedOut">
-  <div class="jumbotron header"><h1><strong>Your</strong> hideout</h1>
-    <button type="button" class="btn" style="background-color: indianred; color: white; float: right;" (click)="deleteAccount(currentUser.id)">Delete Account</button> 
-  </div> -->
-
 <div class="container" *ngIf="currentUser; else loggedOut">
+
   <header class="jumbotron header">
     <h1>
       <strong>Your</strong> Hideout
-      <button type="button" class="btn" style="background-color: indianred; color: white; float: right;" (click)="deleteAccount(currentUser.id)">Delete Account</button>
+        <button type="button" class="btn" style="background-color: indianred; color: white; float: right;"
+          (click)="deleteAccount(currentUser.id)">Delete Account</button>
     </h1>
     <label class="hoverable" for="fileInput">
-      <img *ngIf="theUser.profilePicPath == '' || theUser.profilePicPath == null"
-        id="profile-img"
-        class="img-circle2"
+      <img *ngIf="theUser.profilePicPath == '' || theUser.profilePicPath == null" id="profile-img" class="img-circle2"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
-        <img *ngIf="theUser.profilePicPath !== '' || theUser.profilePicPath !== null"
-        id="profile-img"
-        class="img-circle2"
-        src="../../assets/{{theUser.profilePicPath}}"> 
+      <img *ngIf="theUser.profilePicPath !== '' || theUser.profilePicPath !== null" id="profile-img" class="img-circle2"
+        src="../../assets/{{theUser.profilePicPath}}">
       <div class="hover-text">Choose file</div>
       <div class="background"></div>
     </label>
-    <br/>
+    <br />
     <input id="fileInput" type='file' (change)="onSelectPic($event)">
   </header>
+
+
   <div class="wrap">
     <div class="divLeft">
-      <!-- <div class="flex-container2">
-        <div class="flexbox">
-          <div>
-            <h3><strong>{{currentUser.username}}</strong></h3>
-            <img 
-            id="profile-img"
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            class="img-circle2"
-            />
-        </div>
-        </div>
-      </div> -->
-      <!-- <div class="flex-container2">
-        <div class="flexbox">
-          <div>
-            <h3><strong>{{theUser.username}}</strong></h3>
-            <label class="hoverable" for="fileInput">
-              <img *ngIf="theUser.profilePicPath == '' || theUser.profilePicPath == null"
-                id="profile-img"
-                class="img-circle2"
-                src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                <img *ngIf="theUser.profilePicPath !== '' || theUser.profilePicPath !== null"
-                id="profile-img"
-                class="img-circle2"
-                src="../../assets/{{theUser.profilePicPath}}"> 
-              <div class="hover-text">Choose file</div>
-              <div class="background"></div>
-            </label>
-            <br/>
-            <input id="fileInput" type='file' (change)="onSelectPic($event)">
-        </div>
-        </div>
-      </div> -->
+
       <div class="jumbotron postBtnDiv">
-        <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput placeholder="What's on your mind?"></textarea>
-        <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;" (click)="createPost(postcontent)">Post</button>
+        <textarea type="text" [(ngModel)]="postcontent" id="form7" class="md-textarea form-control" mdbInput
+          placeholder="What's on your mind?"></textarea>
+        <button type="button" class="btn" style="background-color: rgb(92, 205, 139); color: white;"
+          (click)="createPost(postcontent)">Post</button>
       </div>
-      
+
       <div class="jumbotron postContent" *ngFor="let post of posts">
         <div class="flexcontainer">
-          <div class="flexbox1" style="background-color: aquamarine;"> <p><b>Author:</b> {{post.authorName}}</p>   </div>
-          <div class="flexbox2"> <p><b>Posted at:</b> {{ post.date | date:'medium' }}</p>   </div> 
-          <div class="flexbox4"> <p>{{post.text}}</p>   </div>
+          <div class="flexbox1" style="background-color: aquamarine;">
+            <p><b>Author:</b> {{post.authorName}}</p>
+          </div>
+          <div class="flexbox2">
+            <p><b>Posted at:</b> {{ post.date | date:'medium' }}</p>
+          </div>
+          <div class="flexbox4">
+            <p>{{post.text}}</p>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="divRight">
       <div class="jumbotron upload">
         <app-upload-files></app-upload-files>
@@ -79,9 +51,8 @@
     </div>
   </div>
 
-  </div>
-  
-  <ng-template #loggedOut>
-    Please login.
-  </ng-template>
-  
+</div>
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>
