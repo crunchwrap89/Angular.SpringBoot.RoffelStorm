@@ -18,6 +18,7 @@
         <a href="/users" class="nav-link" *ngIf="isLoggedIn" routerLink="users">Hideouts</a>
       </li>
     </ul>
+    <app-theme-switch></app-theme-switch>
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
@@ -26,7 +27,6 @@
         <a href="/login" class="nav-link" routerLink="login">Login</a>
       </li>
     </ul>
-<app-theme-switch></app-theme-switch>
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
         <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>

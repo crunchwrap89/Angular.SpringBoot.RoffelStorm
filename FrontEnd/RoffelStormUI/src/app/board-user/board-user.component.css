@@ -15,9 +15,9 @@
   background-color: var(--a2);
 }
 .postMaker {
-  padding: 1em;
+  padding: 2em;
   width: 25em; 
-  margin: 25px;
+  background-color: var(--a1);
 }
 
 .postDiv {
