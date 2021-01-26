@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeroesModule } from './heroes/heroes.module';
 import { OrderModule } from 'ngx-order-pipe';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnimationSwitchComponent } from './animation-switch/animation-switch.component';
 
 
@@ -30,7 +31,8 @@ import { AnimationSwitchComponent } from './animation-switch/animation-switch.co
     HttpClientModule,
     HeroesModule,
     AppRoutingModule,
-    OrderModule
+    OrderModule,
+    NgbModule,
   ],
   declarations: [
     AppComponent,

@@ -1,0 +1,29 @@
+/* .container {
+  display: flex;
+  height: 200px;
+}
+
+
+
+.gallerize-example {
+  margin: 2em;
+} */
+
+img {
+  cursor: pointer;
+}
+
+.popupimg {
+  max-width: calc(100vw - 500px);
+  max-height: 100vh;
+}
+
+.modal-body2 {
+  width: auto;
+  margin: auto;
+}
+
+.modal-header2 {
+  max-width: fit-content;
+  margin: auto;
+}

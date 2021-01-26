@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 h1 {
-    color: rgb(88, 116, 86);
-    font-weight: 700;
+  color: rgb(88, 116, 86);
+  font-weight: 700;
 }
 h2 {
-    color: var(--font-color);
-    font-weight: 700;
+  color: var(--font-color);
+  font-weight: 700;
 }
 .theme-light {
     --color-primary: rgb(151, 226, 157);      
@@ -54,4 +54,8 @@ h2 {
     --h1: hidden;
     --h2: Gradient 0s ease infinite;
     
+}
+
+.myCustomModalClass .modal-dialog {
+  max-width: fit-content;
 }
