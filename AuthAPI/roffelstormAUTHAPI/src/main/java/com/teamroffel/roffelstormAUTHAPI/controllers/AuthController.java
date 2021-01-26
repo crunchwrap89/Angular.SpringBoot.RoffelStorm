@@ -13,7 +13,9 @@ import javax.persistence.Query;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,22 +30,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teamroffel.roffelstormAUTHAPI.models.ConfirmationToken;
 import com.teamroffel.roffelstormAUTHAPI.models.ERole;
 import com.teamroffel.roffelstormAUTHAPI.models.Role;
 import com.teamroffel.roffelstormAUTHAPI.models.User;
 import com.teamroffel.roffelstormAUTHAPI.payload.request.LoginRequest;
+import com.teamroffel.roffelstormAUTHAPI.payload.request.LoginRequestMail;
 import com.teamroffel.roffelstormAUTHAPI.payload.request.SignupRequest;
 import com.teamroffel.roffelstormAUTHAPI.payload.response.JwtResponse;
 import com.teamroffel.roffelstormAUTHAPI.payload.response.MessageResponse;
+import com.teamroffel.roffelstormAUTHAPI.repository.ConfirmationTokenRepository;
 import com.teamroffel.roffelstormAUTHAPI.repository.RoleRepository;
 import com.teamroffel.roffelstormAUTHAPI.repository.UserRepository;
 import com.teamroffel.roffelstormAUTHAPI.security.jwt.JwtUtils;
+import com.teamroffel.roffelstormAUTHAPI.security.services.EmailSenderService;
 import com.teamroffel.roffelstormAUTHAPI.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+	
+	@Autowired
+    ApplicationEventPublisher eventPublisher;
+	
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -58,6 +68,12 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+    
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
     
     @PersistenceContext
 	private EntityManager em;
@@ -75,7 +91,11 @@ public class AuthController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
-
+        if(userDetails.isEnabled() == false) {
+        	return ResponseEntity.badRequest()
+                    .body(new MessageResponse("Accuntn not yet verified"));
+        }
+        
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
@@ -137,6 +157,77 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+    
+//    @PostMapping("/signup")
+//    public ResponseEntity<?> registerUserWithMailAuth(@Valid @RequestBody SignupRequest signUpRequest) {
+//        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Error: Username is already taken!"));
+//        }
+//
+//        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Error: Email is already in use!"));
+//        }
+//
+//        // Create new user's account
+//        User user = new User(signUpRequest.getUsername(),
+//                signUpRequest.getEmail(),
+//                encoder.encode(signUpRequest.getPassword()));
+//
+//        Set<String> strRoles = signUpRequest.getRole();
+//        Set<Role> roles = new HashSet<>();
+//
+//        if (strRoles == null) {
+//            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+//                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//            roles.add(userRole);
+//        } else {
+//            strRoles.forEach(role -> {
+//                switch (role) {
+//                    case "admin":
+//                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//                        roles.add(adminRole);
+//
+//                        break;
+//                    case "mod":
+//                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//                        roles.add(modRole);
+//
+//                        break;
+//                    default:
+//                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//                        roles.add(userRole);
+//                }
+//            });
+//        }
+//
+//        user.setRoles(roles);
+//        userRepository.save(user);
+//        
+//        ConfirmationToken confirmationToken = new ConfirmationToken(user);
+//
+//        confirmationTokenRepository.save(confirmationToken);
+//
+//        SimpleMailMessage mailMessage = new SimpleMailMessage();
+//        mailMessage.setTo(user.getEmail());
+//        mailMessage.setSubject("Complete Registration!");
+//        mailMessage.setFrom("teamroffell@gmail.com");
+//        mailMessage.setText("To confirm your account, please click here : "
+//        +"http://localhost:8080/api/auth/confirm-account?token="+confirmationToken.getConfirmationToken());
+//
+//        emailSenderService.sendEmail(mailMessage);
+//        
+//        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+//    }
+    
+    
+
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
