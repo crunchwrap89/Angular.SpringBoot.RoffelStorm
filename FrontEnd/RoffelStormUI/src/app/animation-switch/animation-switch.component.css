@@ -38,13 +38,13 @@
     -webkit-transition: 0.4s;
     transition: 0.4s;
     box-shadow: 0 0px 15px #2020203d;
-    background: white url('https://i.ibb.co/FxzBYR9/night.png');
+    background: rgb(148, 148, 148);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 input:checked+.slider {
-    background-color: #9df7b8;
+    background-color: #c5f0d0;
 }
 
 input:focus+.slider {
@@ -55,7 +55,7 @@ input:checked+.slider:before {
     -webkit-transform: translateX(24px);
     -ms-transform: translateX(24px);
     transform: translateX(24px);
-    background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
+    background: white;
     background-repeat: no-repeat;
     background-position: center;
 }

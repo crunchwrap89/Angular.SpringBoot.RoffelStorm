@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeroesModule } from './heroes/heroes.module';
 import { OrderModule } from 'ngx-order-pipe';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
+import { AnimationSwitchComponent } from './animation-switch/animation-switch.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
     BoardUserComponent,
     UploadFilesComponent,
     PageNotFoundComponent,
-    ThemeSwitchComponent
+    ThemeSwitchComponent,
+    AnimationSwitchComponent
   ],
    providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
