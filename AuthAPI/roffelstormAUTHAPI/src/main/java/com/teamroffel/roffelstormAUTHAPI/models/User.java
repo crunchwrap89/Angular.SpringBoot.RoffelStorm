@@ -35,7 +35,7 @@ public class User {
     private String profilePicPath;
     
     @Column(name = "enabled")
-    private boolean enabled = true;
+    private boolean enabled;
     
 
     @ManyToMany(fetch = FetchType.LAZY)
