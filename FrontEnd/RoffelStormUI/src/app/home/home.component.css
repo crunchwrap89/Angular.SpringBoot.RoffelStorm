@@ -5,7 +5,7 @@
         width: 100%;
         margin: 0px;
       }
-  .border{
+  .borderr{
     padding: 5px;
     background: linear-gradient(110deg, var(--a1) 30%, rgba(0, 0, 0, 0) 30%), linear-gradient(110deg, var(--a2) 39%, var(--a3) 34%);
     background-size: 400% 400%;
@@ -18,13 +18,13 @@
     padding: 40px 0;
     border-radius: 25px;
     display: block;
-    background-color:#ff6f69;
+    background-color:var(--a4);
     margin-top: 5em;
     margin-left: 10em;
     margin-right: 10em;
     padding-bottom: 40px;
     height: 600px;
-    background: radial-gradient(#648091, #ff8b87);
+    background: radial-gradient(var(--a5), var(--a4));
     background-size: 300%;
     background-position:50% 50%;
     filter: grayscale(var(--greyscale));

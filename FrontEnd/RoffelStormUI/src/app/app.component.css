@@ -8,9 +8,9 @@
   /* jultema */
   .snowCon {
     background-image:
-      url(https://i.imgur.com/uYjnk8N.png),
-      url(https://i.imgur.com/iAGD6MA.png),
-      url(https://i.imgur.com/hIJDjbg.png);
+      var(--v1),
+      var(--v2),
+      var(--v3);
     animation: snow 30s linear infinite;
     overflow-x: hidden;
   }
@@ -27,7 +27,7 @@
 
 .Brand {
   width: 10em;
-  filter: grayscale(var(--greyscale));
+  filter: grayscale(var(--greyscale2));
   margin-left: 5em;
   transition-duration: 1s;
 }
