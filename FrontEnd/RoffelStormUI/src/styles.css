@@ -21,9 +21,6 @@ h2 {
     --a3: #88d8b0;
     --a4: rgb(152, 219, 197);
     --a5: rgb(16, 32, 17);
-    --v1: url(https://i.imgur.com/uYjnk8N.png);
-    --v2: url(https://i.imgur.com/iAGD6MA.png);
-    --v3: url(https://i.imgur.com/hIJDjbg.png);
 }
 
 .theme-dark {
@@ -40,7 +37,21 @@ h2 {
     --a3: #36363b;
     --a4: rgb(138, 203, 207);
     --a5: rgb(16, 14, 34);
+}
+
+#anim-on {
     --v1: url(https://i.imgur.com/uYjnk8N.png);
     --v2: url(https://i.imgur.com/iAGD6MA.png);
     --v3: url(https://i.imgur.com/hIJDjbg.png);
+    --h1: visible;
+    --h2: Gradient 35s ease infinite;
+}
+
+#anim-off {
+    --v1: none;
+    --v2: none;
+    --v3: none;
+    --h1: hidden;
+    --h2: Gradient 0s ease infinite;
+    
 }
