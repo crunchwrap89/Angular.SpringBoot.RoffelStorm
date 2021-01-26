@@ -9,9 +9,9 @@
     <label class="hoverable" for="fileInput">
       <img *ngIf="theUser.profilePicPath == '' || theUser.profilePicPath == null" id="profile-img" class="img-circle2"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
-      <img *ngIf="theUser.profilePicPath !== '' || theUser.profilePicPath !== null" id="profile-img" class="img-circle2"
+      <img *ngIf="theUser.profilePicPath !== null" id="profile-img" class="img-circle2"
         src="../../assets/{{theUser.profilePicPath}}">
-      <div class="hover-text">Choose file</div>
+      <div class="hover-text">Select profile img</div>
       <div class="background"></div>
     </label>
     <br />

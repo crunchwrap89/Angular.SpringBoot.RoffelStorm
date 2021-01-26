@@ -30,7 +30,7 @@
     <div class="flexbox" *ngFor="let user of users">
       <div class="clickable" routerLink="/user/{{user.id}}">
       <p routerLink="/user/{{user.id}}">
-        {{user.username}} 
+        {{user.username}}
       </p>
       <img
       *ngIf="user.profilePicPath == '' || user.profilePicPath == null"
