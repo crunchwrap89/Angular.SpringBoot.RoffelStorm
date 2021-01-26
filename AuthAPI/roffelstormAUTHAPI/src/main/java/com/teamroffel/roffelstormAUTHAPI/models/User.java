@@ -33,6 +33,10 @@ public class User {
     private String password;
 
     private String profilePicPath;
+    
+    @Column(name = "enabled")
+    private boolean enabled;
+    
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
@@ -41,6 +45,8 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     public User() {
+    	 super();
+         this.enabled=false;
     }
 
     public User(String username, String email, String password) {
@@ -96,4 +102,14 @@ public class User {
     public void setProfilePicPath(String profilePicPath) {
         this.profilePicPath = profilePicPath;
     }
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+    
+    
 }

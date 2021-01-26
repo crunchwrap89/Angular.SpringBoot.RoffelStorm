@@ -2,9 +2,73 @@
   padding: 3em;
 }
 .header {
-  background-color: rgb(117, 199, 247);
+  background-color:var(--a2);
   height: auto;
 }
+.jumbotron {
+  height: auto;
+  padding: 2em;
+}
+.hoverable {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+}
+.hoverable .hover-text {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.hoverable .background {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+.hoverable:hover .hover-text {
+  display: block;
+}
+.hoverable:hover .background {
+  display: block;
+}
+
+#fileInput {
+  display: none;
+}
+.img-circle2 {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  border:white;
+  border-style: solid;
+  border-width: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .wrap {
   display: flex;
@@ -22,10 +86,6 @@
   padding: 3em;
 }
 
-.img-circle2 {
-  border-radius: 50%;
-  width: 12em;
-}
 
 @-webkit-keyframes green-fade {
   0% {
@@ -64,15 +124,7 @@ input:focus:-moz-placeholder {
   color: transparent;
 }
 
-.jumbotron {
-  height: auto;
-  padding: 2em;
-}
 
-.header {
-  height: 10em;
-  background-color: var(--a2);
-}
 .upload {
   background-color: var(--a2);
   margin: 2em;
@@ -165,40 +217,3 @@ input:focus:-moz-placeholder {
   background-color: #75d694;
 }
 
-.hoverable {
-  position: relative;
-  display: block;
-  cursor: pointer;
-  width: 12em;
-  border-radius: 50%;
-}
-.hoverable .hover-text {
-  position: absolute;
-  display: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-.hoverable .background {
-  position: absolute;
-  display: none;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.5);
-  pointer-events: none;
-  border-radius: 50%;
-  z-index: 1;
-}
-.hoverable:hover .hover-text {
-  display: block;
-}
-.hoverable:hover .background {
-  display: block;
-}
-
-#fileInput {
-  display: none;
-}

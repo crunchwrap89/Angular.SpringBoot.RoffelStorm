@@ -7,24 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThemeSwitchComponent implements OnInit {
 
-  themeName = 'theme-light';
+  checkers: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
-    localStorage.setItem('theme', this.themeName);
-    document.documentElement.className = this.themeName;
+
+      if (localStorage.getItem('theme') === 'theme-dark') {
+          this.setTheme('theme-dark');
+          this.checkers = false;
+      } else {
+          this.setTheme('theme-light');
+          this.checkers = true;
+      }
   }
 
-  setTheme() {
-    if (this.themeName === 'theme-dark') {
-        this.themeName = "theme-light";
-        localStorage.setItem('theme', this.themeName);
-        document.documentElement.className = this.themeName;
-    } else {
-        this.themeName = "theme-dark";
-        localStorage.setItem('theme', this.themeName);
-        document.documentElement.className = this.themeName;
-    }
+  setTheme(tName) {
+    localStorage.setItem('theme', tName);
+    document.documentElement.className = tName;
+}
+
+  toggleTheme() {
+  if (localStorage.getItem('theme') === 'theme-dark'){
+      this.setTheme('theme-light');
+  } else {
+      this.setTheme('theme-dark');
+  }
 }
 
 }

@@ -21,6 +21,8 @@ import { HeroesModule } from './heroes/heroes.module';
 import { OrderModule } from 'ngx-order-pipe';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AnimationSwitchComponent } from './animation-switch/animation-switch.component';
+
 
 @NgModule({
   imports: [
@@ -43,7 +45,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BoardUserComponent,
     UploadFilesComponent,
     PageNotFoundComponent,
-    ThemeSwitchComponent
+    ThemeSwitchComponent,
+    AnimationSwitchComponent
   ],
    providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
